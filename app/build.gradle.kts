@@ -53,6 +53,9 @@ dependencies {
     // CSV export
     implementation(libs.opencsv)
 
+    // Room testing
+    androidTestImplementation(libs.room.testing)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ext.junit)
