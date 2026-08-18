@@ -1,6 +1,6 @@
 # Project State
 
-**Current phase:** Phase 3 — Home Screen & Service Selection (GSD roadmap; 1:1 with original-roadmap Phase 3)
+**Current phase:** Phase 5 — Register First Timer Flow (GSD roadmap; 1:1 with original-roadmap Phase 5)
 **Initialized:** 2026-08-18
 **Mode:** interactive
 **Granularity:** standard
@@ -16,7 +16,7 @@
 See: .planning/PROJECT.md (updated 2026-08-18)
 
 **Core value:** A complete, usable, offline-first attendance system through Phase 7 — recording members and first-timers and exporting CSV with zero internet dependency.
-**Current focus:** Phase 3 — Home Screen & Service Selection
+**Current focus:** Phase 5 — Register First Timer Flow
 
 ## Completed Phases
 
@@ -32,4 +32,4 @@ See: .planning/PROJECT.md (updated 2026-08-18)
 
 ## Next Action
 
-`/gsd-plan-phase 3` to start planning Phase 3 (Home Screen & Service Selection).
+`/gsd-plan-phase 5` to start planning Phase 5 (Register First Timer Flow).

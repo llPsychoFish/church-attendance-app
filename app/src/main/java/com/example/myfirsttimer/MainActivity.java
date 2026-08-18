@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.myfirsttimer.ui.auth.LoginActivity;
 import com.example.myfirsttimer.ui.home.ServiceSelectionDialog;
+import com.example.myfirsttimer.ui.member.RegisterMemberActivity;
 import com.example.myfirsttimer.util.Constants;
 import com.example.myfirsttimer.util.SessionManager;
 
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements ServiceSelectionD
         }
 
         btnRegisterMember.setOnClickListener(v ->
-                Toast.makeText(this, "Register Member — coming in Phase 4", Toast.LENGTH_SHORT).show()
+                startActivity(new Intent(this, RegisterMemberActivity.class))
         );
 
         btnRegisterFirstTimer.setOnClickListener(v ->
