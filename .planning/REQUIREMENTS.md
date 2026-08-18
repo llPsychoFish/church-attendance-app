@@ -34,22 +34,22 @@
 
 ### Home Screen & Service Selection (Phase 3)
 
-- [ ] **HOME-01**: On login, usher selects current service type (SUN / WED / FRI / CELL) stored for the session
-- [ ] **HOME-02**: Two large buttons — Register Member / Register First Timer
-- [ ] **HOME-03**: Navigation scaffolding between screens
+- [x] **HOME-01**: On login, usher selects current service type (SUN / WED / FRI / CELL) stored for the session
+- [x] **HOME-02**: Two large buttons — Register Member / Register First Timer
+- [x] **HOME-03**: Navigation scaffolding between screens
 
 ### Register Member Flow (Phase 4)
 
-- [ ] **MEMB-01**: Search by name or phone against local `Member` table
-- [ ] **MEMB-02**: On match, create `Attendance` record (`member_id`, `service_date`, `service_type`, `registered_by`, `timestamp`)
-- [ ] **MEMB-03**: On no match, show redirect message ("We couldn't find you — please use Register First Timer instead") with a jump into the First Timer flow
-- [ ] **MEMB-04**: Return to home screen automatically after successful registration
+- [x] **MEMB-01**: Search by name or phone against local `Member` table
+- [x] **MEMB-02**: On match, create `Attendance` record (`member_id`, `service_date`, `service_type`, `registered_by`, `timestamp`)
+- [x] **MEMB-03**: On no match, show redirect message ("We couldn't find you — please use Register First Timer instead") with a jump into the First Timer flow
+- [x] **MEMB-04**: Return to home screen automatically after successful registration
 
 ### Register First Timer Flow (Phase 5)
 
-- [ ] **FTMR-01**: First Timer form matches `docs/data-field-spec.md` §1 field-for-field — surname, first name, course of study, level, hall/hostel, room no, date of birth, email, phone, invited by, born again, speaks in tongues, wants membership, prayer request, department multi-select (checkboxes)
-- [ ] **FTMR-02**: On submit, in one local transaction create `Member` (`is_first_timer_origin = true`) + `FirstTimer` + `Attendance` record
-- [ ] **FTMR-03**: Return to home screen automatically after successful registration
+- [x] **FTMR-01**: First Timer form matches `docs/data-field-spec.md` §1 field-for-field — surname, first name, course of study, level, hall/hostel, room no, date of birth, email, phone, invited by, born again, speaks in tongues, wants membership, prayer request, department multi-select (checkboxes)
+- [x] **FTMR-02**: On submit, in one local transaction create `Member` (`is_first_timer_origin = true`) + `FirstTimer` + `Attendance` record
+- [x] **FTMR-03**: Return to home screen automatically after successful registration
 
 ### Local Review Screens (Phase 6)
 
@@ -97,9 +97,9 @@
 | SETUP-01..05 | 0 | 0 | Completed |
 | DATA-01..05 | 1 | 1 | Completed |
 | AUTH-01..06 | 2 | 2 | Completed |
-| HOME-01..03 | 3 | 3 | Pending |
-| MEMB-01..04 | 4 | 4 | Pending |
-| FTMR-01..03 | 5 | 5 | Pending |
+| HOME-01..03 | 3 | 3 | Completed |
+| MEMB-01..04 | 4 | 4 | Completed |
+| FTMR-01..03 | 5 | 5 | Completed |
 | REVW-01..05 | 6 | 6 | Pending |
 | EXPR-01..03 | 7 | 7 | Pending |
 

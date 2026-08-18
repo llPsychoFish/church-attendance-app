@@ -38,6 +38,10 @@
             android:name=".ui.member.RegisterMemberActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.firsttimer.RegisterFirstTimerActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

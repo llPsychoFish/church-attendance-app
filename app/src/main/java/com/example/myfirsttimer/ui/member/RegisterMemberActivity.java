@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myfirsttimer.MainActivity;
 import com.example.myfirsttimer.R;
+import com.example.myfirsttimer.ui.firsttimer.RegisterFirstTimerActivity;
 import com.example.myfirsttimer.ui.home.ServiceSelectionDialog;
 import com.example.myfirsttimer.util.Constants;
 import com.example.myfirsttimer.util.SessionManager;
@@ -66,8 +67,7 @@ public class RegisterMemberActivity extends AppCompatActivity implements MemberS
         btnSearch.setOnClickListener(v -> doSearch());
 
         btnGoFirstTimer.setOnClickListener(v -> {
-            // Phase 5 will implement the First Timer flow
-            Toast.makeText(this, "First Timer flow — coming in Phase 5", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, RegisterFirstTimerActivity.class));
         });
 
         vm.getSearchResults().observe(this, members -> {
