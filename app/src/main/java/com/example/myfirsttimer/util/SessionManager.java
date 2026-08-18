@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 public class SessionManager {
     private static final String PREF = "church_session";
     private static final String KEY_USHER_ID = "logged_in_usher_id";
+    private static final String KEY_SERVICE_TYPE = "service_type";
 
     private final SharedPreferences prefs;
 
@@ -26,7 +27,22 @@ public class SessionManager {
         return getLoggedInUsherId() != -1L;
     }
 
+    public void setServiceType(String serviceType) {
+        prefs.edit().putString(KEY_SERVICE_TYPE, serviceType).apply();
+    }
+
+    public String getServiceType() {
+        return prefs.getString(KEY_SERVICE_TYPE, null);
+    }
+
+    public boolean hasServiceType() {
+        return getServiceType() != null;
+    }
+
     public void logout() {
-        prefs.edit().remove(KEY_USHER_ID).apply();
+        prefs.edit()
+                .remove(KEY_USHER_ID)
+                .remove(KEY_SERVICE_TYPE)
+                .apply();
     }
 }

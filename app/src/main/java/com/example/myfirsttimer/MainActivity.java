@@ -2,6 +2,7 @@ package com.example.myfirsttimer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -9,17 +10,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.myfirsttimer.ui.auth.LoginActivity;
+import com.example.myfirsttimer.ui.home.ServiceSelectionDialog;
+import com.example.myfirsttimer.util.Constants;
 import com.example.myfirsttimer.util.SessionManager;
 
 import com.google.android.material.button.MaterialButton;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ServiceSelectionDialog.OnServiceSelectedListener {
 
     private MaterialButton btnRegisterMember;
     private MaterialButton btnRegisterFirstTimer;
     private MaterialButton btnLogout;
+    private TextView tvServiceType;
     private SessionManager session;
 
     @Override
@@ -43,25 +48,62 @@ public class MainActivity extends AppCompatActivity {
         btnRegisterMember = findViewById(R.id.btnRegisterMember);
         btnRegisterFirstTimer = findViewById(R.id.btnRegisterFirstTimer);
         btnLogout = findViewById(R.id.btnLogout);
+        tvServiceType = findViewById(R.id.tvServiceType);
 
-        if (btnRegisterMember != null) {
-            btnRegisterMember.setOnClickListener(v ->
-                Toast.makeText(MainActivity.this, "Register Member selected", Toast.LENGTH_SHORT).show()
-            );
+        if (!session.hasServiceType()) {
+            showServiceSelectionDialog();
+        } else {
+            updateServiceTypeDisplay();
         }
 
-        if (btnRegisterFirstTimer != null) {
-            btnRegisterFirstTimer.setOnClickListener(v ->
-                Toast.makeText(MainActivity.this, "Register First Timer selected (Welcome!)", Toast.LENGTH_SHORT).show()
-            );
-        }
+        btnRegisterMember.setOnClickListener(v ->
+                Toast.makeText(this, "Register Member — coming in Phase 4", Toast.LENGTH_SHORT).show()
+        );
 
-        if (btnLogout != null) {
-            btnLogout.setOnClickListener(v -> {
-                session.logout();
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                finish();
-            });
+        btnRegisterFirstTimer.setOnClickListener(v ->
+                Toast.makeText(this, "Register First Timer — coming in Phase 5", Toast.LENGTH_SHORT).show()
+        );
+
+        btnLogout.setOnClickListener(v -> {
+            session.logout();
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        });
+    }
+
+    private void showServiceSelectionDialog() {
+        FragmentManager fm = getSupportFragmentManager();
+        ServiceSelectionDialog dialog = ServiceSelectionDialog.newInstance();
+        dialog.show(fm, "service_selection");
+    }
+
+    private void updateServiceTypeDisplay() {
+        String serviceType = session.getServiceType();
+        if (serviceType == null || tvServiceType == null) return;
+
+        String label;
+        switch (serviceType) {
+            case Constants.SERVICE_SUN:
+                label = "Sunday Service";
+                break;
+            case Constants.SERVICE_WED:
+                label = "Wednesday Service";
+                break;
+            case Constants.SERVICE_FRI:
+                label = "Friday Service";
+                break;
+            case Constants.SERVICE_CELL:
+                label = "Cell Meeting";
+                break;
+            default:
+                label = serviceType;
+                break;
         }
+        tvServiceType.setText(label);
+    }
+
+    @Override
+    public void onServiceSelected(String serviceType) {
+        updateServiceTypeDisplay();
     }
 }

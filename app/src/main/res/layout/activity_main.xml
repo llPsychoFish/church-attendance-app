@@ -58,6 +58,16 @@
                 android:text="Select an option below to proceed with registration"
                 android:textColor="#D0D4F7"
                 android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvServiceType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text=""
+                android:textColor="@color/brand_gold"
+                android:textSize="16sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

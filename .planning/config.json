@@ -1,5 +1,8 @@
 {
   "model_profile": "inherit",
+  "graphify": {
+    "enabled": true
+  },
   "commit_docs": true,
   "parallelization": false,
   "search_gitignored": false,

@@ -9,28 +9,28 @@
 
 ### Project Setup (Phase 0)
 
-- [ ] **SETUP-01**: Android project (Java, min SDK 21+) builds and launches to a blank activity
-- [ ] **SETUP-02**: Core dependencies added — Room, ViewModel/LiveData, Material Components, RecyclerView, OpenCSV
-- [ ] **SETUP-03**: Package structure created per `docs/project-structure.md` (`data/entity`, `data/dao`, `data/repository`, `data/remote` placeholder, `ui/<feature>`, `util/`)
-- [ ] **SETUP-04**: `AppDatabase` Room singleton shell builds (no entities yet)
-- [ ] **SETUP-05**: `.gitignore` set to Android template + `local.properties` / `secrets.properties` exclusions
+- [x] **SETUP-01**: Android project (Java, min SDK 21+) builds and launches to a blank activity
+- [x] **SETUP-02**: Core dependencies added — Room, ViewModel/LiveData, Material Components, RecyclerView, OpenCSV
+- [x] **SETUP-03**: Package structure created per `docs/project-structure.md` (`data/entity`, `data/dao`, `data/repository`, `data/remote` placeholder, `ui/<feature>`, `util/`)
+- [x] **SETUP-04**: `AppDatabase` Room singleton shell builds (no entities yet)
+- [x] **SETUP-05**: `.gitignore` set to Android template + `local.properties` / `secrets.properties` exclusions
 
 ### Local Data Layer (Phase 1)
 
-- [ ] **DATA-01**: Room entities defined matching `docs/data-field-spec.md` exactly — `Usher`, `Member`, `Attendance`, `FirstTimer`, `FirstTimerDepartment`
-- [ ] **DATA-02**: DAOs with insert/query/update for each entity
-- [ ] **DATA-03**: `synced` boolean present on `Attendance` and `Member` (designed in now, unused until Phase 8)
-- [ ] **DATA-04**: `AppDatabase` singleton configured with all entities + migrations off
-- [ ] **DATA-05**: Unit tests — insert/query round-trip for each entity
+- [x] **DATA-01**: Room entities defined matching `docs/data-field-spec.md` exactly — `Usher`, `Member`, `Attendance`, `FirstTimer`, `FirstTimerDepartment`
+- [x] **DATA-02**: DAOs with insert/query/update for each entity
+- [x] **DATA-03**: `synced` boolean present on `Attendance` and `Member` (designed in now, unused until Phase 8)
+- [x] **DATA-04**: `AppDatabase` singleton configured with all entities + migrations off
+- [x] **DATA-05**: Unit tests — insert/query round-trip for each entity
 
 ### Usher Authentication (Phase 2)
 
-- [ ] **AUTH-01**: Ushers can register a local account (name, username, PIN/password) stored hashed in `Usher` table
-- [ ] **AUTH-02**: Username uniqueness validated locally before saving
-- [ ] **AUTH-03**: Ushers can log in (username + PIN) checked against local `Usher` table
-- [ ] **AUTH-04**: Logged-in usher ID stored in session (SharedPreferences) and tags every record as `registered_by`
-- [ ] **AUTH-05**: Ushers can log out
-- [ ] **AUTH-06**: Local credential reset/clear screen (offline-friendly; full recovery deferred to Phase 8)
+- [x] **AUTH-01**: Ushers can register a local account (name, username, PIN/password) stored hashed in `Usher` table
+- [x] **AUTH-02**: Username uniqueness validated locally before saving
+- [x] **AUTH-03**: Ushers can log in (username + PIN) checked against local `Usher` table
+- [x] **AUTH-04**: Logged-in usher ID stored in session (SharedPreferences) and tags every record as `registered_by`
+- [x] **AUTH-05**: Ushers can log out
+- [x] **AUTH-06**: Local credential reset/clear screen (offline-friendly; full recovery deferred to Phase 8)
 
 ### Home Screen & Service Selection (Phase 3)
 
@@ -94,9 +94,9 @@
 
 | Requirement | Roadmap Phase | GSD Phase | Status |
 |-------------|---------------|-----------|--------|
-| SETUP-01..05 | 0 | 0 | Pending |
-| DATA-01..05 | 1 | 1 | Pending |
-| AUTH-01..06 | 2 | 2 | Pending |
+| SETUP-01..05 | 0 | 0 | Completed |
+| DATA-01..05 | 1 | 1 | Completed |
+| AUTH-01..06 | 2 | 2 | Completed |
 | HOME-01..03 | 3 | 3 | Pending |
 | MEMB-01..04 | 4 | 4 | Pending |
 | FTMR-01..03 | 5 | 5 | Pending |
