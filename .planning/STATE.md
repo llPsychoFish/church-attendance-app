@@ -1,6 +1,6 @@
 # Project State
 
-**Current phase:** Phase 1 — Project Setup (GSD roadmap)
+**Current phase:** Phase 0 — Project Setup (GSD roadmap; 1:1 with original-roadmap Phase 0)
 **Initialized:** 2026-08-18
 **Mode:** interactive
 **Granularity:** standard
@@ -16,7 +16,7 @@
 See: .planning/PROJECT.md (updated 2026-08-18)
 
 **Core value:** A complete, usable, offline-first attendance system through Phase 7 — recording members and first-timers and exporting CSV with zero internet dependency.
-**Current focus:** Phase 1 — Project Setup
+**Current focus:** Phase 0 — Project Setup
 
 ## Open Decisions / Notes
 
@@ -27,4 +27,4 @@ See: .planning/PROJECT.md (updated 2026-08-18)
 
 ## Next Action
 
-`/gsd-plan-phase 1` to start planning Phase 1 (Project Setup).
+`/gsd-plan-phase 0` to start planning Phase 0 (Project Setup).

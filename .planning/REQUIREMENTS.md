@@ -94,14 +94,14 @@
 
 | Requirement | Roadmap Phase | GSD Phase | Status |
 |-------------|---------------|-----------|--------|
-| SETUP-01..05 | 0 | — | Pending |
-| DATA-01..05 | 1 | — | Pending |
-| AUTH-01..06 | 2 | — | Pending |
-| HOME-01..03 | 3 | — | Pending |
-| MEMB-01..04 | 4 | — | Pending |
-| FTMR-01..03 | 5 | — | Pending |
-| REVW-01..05 | 6 | — | Pending |
-| EXPR-01..03 | 7 | — | Pending |
+| SETUP-01..05 | 0 | 0 | Pending |
+| DATA-01..05 | 1 | 1 | Pending |
+| AUTH-01..06 | 2 | 2 | Pending |
+| HOME-01..03 | 3 | 3 | Pending |
+| MEMB-01..04 | 4 | 4 | Pending |
+| FTMR-01..03 | 5 | 5 | Pending |
+| REVW-01..05 | 6 | 6 | Pending |
+| EXPR-01..03 | 7 | 7 | Pending |
 
 **Coverage:**
 - v1 requirements: 35 total
