@@ -20,3 +20,8 @@ raw/
 
 # IDE
 .idea/
+
+# Local secrets (Phase 8 Supabase creds, app signing)
+secrets.properties
+*.keystore
+local.properties
