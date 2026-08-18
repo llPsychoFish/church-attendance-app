@@ -224,6 +224,15 @@
                     android:textSize="12sp" />
             </com.google.android.material.card.MaterialCardView>
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="16dp"
+                android:text="LOG OUT"
+                android:textAllCaps="true"
+                android:textStyle="bold" />
+
         </LinearLayout>
     </ScrollView>
 

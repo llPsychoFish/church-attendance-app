@@ -18,6 +18,12 @@ public interface UsherDao {
     @Update
     void update(Usher usher);
 
+    @Query("DELETE FROM ushers WHERE username = :username")
+    void deleteByUsername(String username);
+
+    @Query("SELECT COUNT(*) FROM ushers WHERE username = :username")
+    int countByUsername(String username);
+
     @Query("SELECT * FROM ushers WHERE username = :username LIMIT 1")
     Usher getByUsername(String username);
 
