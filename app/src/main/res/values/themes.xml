@@ -1,0 +1,48 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MyFirstTimer" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Material 3 Color Palette mapping -->
+        <item name="colorPrimary">@color/brand_blue</item>
+        <item name="colorOnPrimary">@color/text_on_dark</item>
+        <item name="colorPrimaryContainer">@color/brand_blue_container</item>
+        <item name="colorOnPrimaryContainer">@color/on_blue_container</item>
+
+        <item name="colorSecondary">@color/brand_gold</item>
+        <item name="colorOnSecondary">@color/text_on_gold</item>
+        <item name="colorSecondaryContainer">@color/brand_gold_container</item>
+        <item name="colorOnSecondaryContainer">@color/on_gold_container</item>
+
+        <item name="colorTertiary">@color/brand_blue_vivid</item>
+
+        <item name="android:colorBackground">@color/bg_off_white</item>
+        <item name="colorSurface">@color/surface_white</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/text_secondary</item>
+
+        <item name="colorError">@color/error_red</item>
+        <item name="colorOnError">@color/white</item>
+        <item name="colorErrorContainer">@color/error_container</item>
+
+        <!-- Status bar styling -->
+        <item name="android:statusBarColor">@color/brand_blue</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="Theme.MyFirstTimer" parent="Base.Theme.MyFirstTimer" />
+
+    <!-- Button Style: Routine Member Registration (Deep Blue) -->
+    <style name="Widget.App.Button.Member" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/brand_blue</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="iconTint">@color/white</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+
+    <!-- Button Style: Warm First Timer Welcome Registration (Gold Accent) -->
+    <style name="Widget.App.Button.FirstTimer" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/brand_gold</item>
+        <item name="android:textColor">@color/text_on_gold</item>
+        <item name="iconTint">@color/text_on_gold</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+</resources>

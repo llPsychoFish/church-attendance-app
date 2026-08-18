@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Application theme ensuring high contrast readability in bright church environments -->
+    <style name="Base.Theme.MyFirstTimer" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/brand_blue</item>
+        <item name="colorOnPrimary">@color/text_on_dark</item>
+        <item name="colorSecondary">@color/brand_gold</item>
+        <item name="colorOnSecondary">@color/text_on_gold</item>
+        <item name="android:colorBackground">@color/bg_off_white</item>
+        <item name="colorSurface">@color/surface_white</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+    </style>
+</resources>
