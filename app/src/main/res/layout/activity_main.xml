@@ -250,6 +250,21 @@
                 app:iconTint="@color/brand_blue" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnExportCsv"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="8dp"
+                android:text="Export CSV"
+                android:textColor="@color/brand_gold_dark"
+                android:textStyle="bold"
+                app:strokeColor="@color/brand_gold"
+                app:strokeWidth="1dp"
+                app:cornerRadius="12dp"
+                app:icon="@android:drawable/ic_menu_save"
+                app:iconTint="@color/brand_gold_dark" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogout"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"

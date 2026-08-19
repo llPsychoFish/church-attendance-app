@@ -17,6 +17,7 @@ import com.example.myfirsttimer.ui.firsttimer.RegisterFirstTimerActivity;
 import com.example.myfirsttimer.ui.home.ServiceSelectionDialog;
 import com.example.myfirsttimer.ui.member.RegisterMemberActivity;
 import com.example.myfirsttimer.ui.review.ReviewDashboardActivity;
+import com.example.myfirsttimer.ui.export.CsvExportActivity;
 import com.example.myfirsttimer.util.Constants;
 import com.example.myfirsttimer.util.SessionManager;
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements ServiceSelectionD
     private MaterialButton btnRegisterMember;
     private MaterialButton btnRegisterFirstTimer;
     private MaterialButton btnViewDashboard;
+    private MaterialButton btnExportCsv;
     private MaterialButton btnLogout;
     private TextView tvServiceType;
     private SessionManager session;
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements ServiceSelectionD
         btnRegisterMember = findViewById(R.id.btnRegisterMember);
         btnRegisterFirstTimer = findViewById(R.id.btnRegisterFirstTimer);
         btnViewDashboard = findViewById(R.id.btnViewDashboard);
+        btnExportCsv = findViewById(R.id.btnExportCsv);
         btnLogout = findViewById(R.id.btnLogout);
         tvServiceType = findViewById(R.id.tvServiceType);
 
@@ -71,6 +74,10 @@ public class MainActivity extends AppCompatActivity implements ServiceSelectionD
 
         btnViewDashboard.setOnClickListener(v ->
                 startActivity(new Intent(this, ReviewDashboardActivity.class))
+        );
+
+        btnExportCsv.setOnClickListener(v ->
+                startActivity(new Intent(this, CsvExportActivity.class))
         );
 
         btnLogout.setOnClickListener(v -> {

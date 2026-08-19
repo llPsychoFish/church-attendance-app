@@ -35,4 +35,8 @@ public class AttendanceRepository {
     public int countByDateAndService(String date, String type) {
         return dao.countByDateAndService(date, type);
     }
+
+    public List<Attendance> getAll() {
+        return dao.getAll();
+    }
 }
