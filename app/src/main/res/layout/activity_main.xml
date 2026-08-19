@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Select an option below to proceed with registration"
-                android:textColor="#D0D4F7"
+                android:textColor="@color/brand_blue_container"
                 android:textSize="14sp" />
 
             <TextView
@@ -235,12 +235,26 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnLogout"
+                android:id="@+id/btnViewDashboard"
+                style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_marginTop="16dp"
-                android:text="LOG OUT"
-                android:textAllCaps="true"
+                android:text="View Dashboard"
+                android:textColor="@color/brand_blue"
+                android:textStyle="bold"
+                app:strokeColor="@color/brand_blue"
+                app:strokeWidth="1dp"
+                app:cornerRadius="12dp"
+                app:icon="@android:drawable/ic_menu_sort_by_size"
+                app:iconTint="@color/brand_blue" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="8dp"
+                android:text="Log out"
                 android:textStyle="bold" />
 
         </LinearLayout>

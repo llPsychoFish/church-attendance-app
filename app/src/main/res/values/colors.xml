@@ -1,33 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Brand Primary Colors (Deep Blue) -->
+    <!-- Design System Tokens (docs/design.md) -->
+    <color name="color_primary">#1A237E</color>
+    <color name="color_primary_dark">#0016BE</color>
+    <color name="color_accent_gold">#D4AF37</color>
+    <color name="color_background">#FAFAFA</color>
+    <color name="color_surface">#FFFFFF</color>
+    <color name="color_text_primary">#1A1A1A</color>
+    <color name="color_text_secondary">#5F5F5F</color>
+    <color name="color_error">#B00020</color>
+    <color name="color_success">#2E7D32</color>
+    <color name="color_divider">#E0E0E0</color>
+
+    <!-- Brand Primary Colors (Deep Blue Aliases) -->
     <color name="brand_blue">#1A237E</color>
     <color name="brand_blue_vivid">#0016BE</color>
     <color name="brand_blue_dark">#000070</color>
     <color name="brand_blue_container">#E8EAF6</color>
     <color name="on_blue_container">#1A237E</color>
 
-    <!-- Brand Accent Colors (Gold) -->
-    <color name="brand_gold">#C9A227</color>
+    <!-- Brand Accent Colors (Gold Aliases) -->
+    <color name="brand_gold">#D4AF37</color>
     <color name="brand_gold_light">#D4AF37</color>
     <color name="brand_gold_dark">#997500</color>
     <color name="brand_gold_container">#FFF8E1</color>
     <color name="on_gold_container">#4A3800</color>
 
-    <!-- Backgrounds & Surfaces -->
+    <!-- Backgrounds & Surfaces Aliases -->
     <color name="bg_off_white">#FAFAFA</color>
     <color name="surface_white">#FFFFFF</color>
     <color name="surface_variant">#F0F4F8</color>
     <color name="outline_border">#E0E0E0</color>
     <color name="outline_subtle">#EEEEEE</color>
 
-    <!-- Typography & Icons -->
+    <!-- Typography & Icons Aliases -->
     <color name="text_primary">#1A1A1A</color>
-    <color name="text_secondary">#5F6368</color>
+    <color name="text_secondary">#5F5F5F</color>
     <color name="text_on_dark">#FFFFFF</color>
     <color name="text_on_gold">#1A1A1A</color>
 
-    <!-- Feedback / Validation Tones -->
+    <!-- Feedback / Validation Tones Aliases -->
     <color name="error_red">#B00020</color>
     <color name="error_container">#FDE8E8</color>
 

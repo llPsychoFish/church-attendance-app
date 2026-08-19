@@ -1,12 +1,38 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Application theme ensuring high contrast readability in bright church environments -->
+    <!-- Base application theme ensuring high contrast readability in bright church environments even when system dark mode is active -->
     <style name="Base.Theme.MyFirstTimer" parent="Theme.Material3.Light.NoActionBar">
-        <item name="colorPrimary">@color/brand_blue</item>
-        <item name="colorOnPrimary">@color/text_on_dark</item>
-        <item name="colorSecondary">@color/brand_gold</item>
+        <!-- Material 3 Color Palette mapping -->
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/brand_blue_container</item>
+        <item name="colorOnPrimaryContainer">@color/on_blue_container</item>
+
+        <item name="colorSecondary">@color/color_accent_gold</item>
         <item name="colorOnSecondary">@color/text_on_gold</item>
-        <item name="android:colorBackground">@color/bg_off_white</item>
-        <item name="colorSurface">@color/surface_white</item>
-        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="colorSecondaryContainer">@color/brand_gold_container</item>
+        <item name="colorOnSecondaryContainer">@color/on_gold_container</item>
+
+        <item name="colorTertiary">@color/color_primary_dark</item>
+
+        <item name="android:colorBackground">@color/color_background</item>
+        <item name="colorSurface">@color/color_surface</item>
+        <item name="colorOnSurface">@color/color_text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/color_text_secondary</item>
+
+        <item name="colorError">@color/color_error</item>
+        <item name="colorOnError">@color/white</item>
+        <item name="colorErrorContainer">@color/error_container</item>
+
+        <item name="colorOutline">@color/color_divider</item>
+
+        <!-- Status bar styling -->
+        <item name="android:statusBarColor">@color/color_primary</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!-- Disable uppercase buttons app-wide per design spec -->
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
     </style>
+
+    <style name="Theme.MyFirstTimer" parent="Base.Theme.MyFirstTimer" />
 </resources>

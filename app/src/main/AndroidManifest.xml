@@ -42,6 +42,9 @@
             android:name=".ui.firsttimer.RegisterFirstTimerActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.review.ReviewDashboardActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
