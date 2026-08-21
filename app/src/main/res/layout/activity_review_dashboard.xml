@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/bg_off_white">
+    android:background="?android:attr/colorBackground">
 
     <!-- Header Banner -->
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/brand_blue"
+        app:cardBackgroundColor="?attr/colorPrimary"
         app:cardCornerRadius="0dp"
         app:cardElevation="4dp"
         app:strokeWidth="0dp">
@@ -23,21 +23,36 @@
             android:paddingTop="36dp"
             android:paddingBottom="20dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="REVIEW DASHBOARD"
-                android:textColor="@color/brand_gold"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:letterSpacing="0.1" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="Dashboard Icon"
+                    android:src="@drawable/ic_dashboard"
+                    app:tint="?attr/colorSecondary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="REVIEW DASHBOARD"
+                    android:textColor="?attr/colorSecondary"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Attendance &amp; First-Timers"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
@@ -59,7 +74,7 @@
                     android:padding="0dp"
                     app:icon="@android:drawable/ic_media_previous"
                     app:iconPadding="0dp"
-                    app:iconTint="@color/white" />
+                    app:iconTint="?attr/colorOnPrimary" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnPickDate"
@@ -67,11 +82,13 @@
                     android:layout_width="0dp"
                     android:layout_height="44dp"
                     android:layout_weight="1"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorOnPrimary"
                     android:textSize="15sp"
-                    app:strokeColor="@color/brand_gold"
+                    app:strokeColor="?attr/colorSecondary"
                     app:strokeWidth="1dp"
-                    app:cornerRadius="8dp" />
+                    app:cornerRadius="8dp"
+                    app:icon="@drawable/ic_calendar"
+                    app:iconTint="?attr/colorSecondary" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnNextDate"
@@ -83,7 +100,7 @@
                     android:padding="0dp"
                     app:icon="@android:drawable/ic_media_next"
                     app:iconPadding="0dp"
-                    app:iconTint="@color/white" />
+                    app:iconTint="?attr/colorOnPrimary" />
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -101,10 +118,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginEnd="4dp"
-            app:cardBackgroundColor="@color/surface_white"
+            app:cardBackgroundColor="?attr/colorSurface"
             app:cardCornerRadius="12dp"
             app:cardElevation="1dp"
-            app:strokeColor="@color/outline_border"
+            app:strokeColor="?attr/colorOutline"
             app:strokeWidth="0.5dp">
 
             <LinearLayout
@@ -119,7 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textColor="@color/brand_blue"
+                    android:textColor="?attr/colorPrimary"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -127,7 +144,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="SUN"
-                    android:textColor="@color/text_secondary"
+                    android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="11sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -137,10 +154,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginHorizontal="4dp"
-            app:cardBackgroundColor="@color/surface_white"
+            app:cardBackgroundColor="?attr/colorSurface"
             app:cardCornerRadius="12dp"
             app:cardElevation="1dp"
-            app:strokeColor="@color/outline_border"
+            app:strokeColor="?attr/colorOutline"
             app:strokeWidth="0.5dp">
 
             <LinearLayout
@@ -155,7 +172,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textColor="@color/brand_blue"
+                    android:textColor="?attr/colorPrimary"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -163,7 +180,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="WED"
-                    android:textColor="@color/text_secondary"
+                    android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="11sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -173,10 +190,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginHorizontal="4dp"
-            app:cardBackgroundColor="@color/surface_white"
+            app:cardBackgroundColor="?attr/colorSurface"
             app:cardCornerRadius="12dp"
             app:cardElevation="1dp"
-            app:strokeColor="@color/outline_border"
+            app:strokeColor="?attr/colorOutline"
             app:strokeWidth="0.5dp">
 
             <LinearLayout
@@ -191,7 +208,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textColor="@color/brand_blue"
+                    android:textColor="?attr/colorPrimary"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -199,7 +216,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="FRI"
-                    android:textColor="@color/text_secondary"
+                    android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="11sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -209,10 +226,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="4dp"
-            app:cardBackgroundColor="@color/surface_white"
+            app:cardBackgroundColor="?attr/colorSurface"
             app:cardCornerRadius="12dp"
             app:cardElevation="1dp"
-            app:strokeColor="@color/outline_border"
+            app:strokeColor="?attr/colorOutline"
             app:strokeWidth="0.5dp">
 
             <LinearLayout
@@ -227,7 +244,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textColor="@color/brand_blue"
+                    android:textColor="?attr/colorPrimary"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -235,7 +252,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="CELL"
-                    android:textColor="@color/text_secondary"
+                    android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="11sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -246,10 +263,10 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/surface_white"
-        app:tabIndicatorColor="@color/brand_blue"
-        app:tabSelectedTextColor="@color/brand_blue"
-        app:tabTextColor="@color/text_secondary"
+        android:background="?attr/colorSurface"
+        app:tabIndicatorColor="?attr/colorPrimary"
+        app:tabSelectedTextColor="?attr/colorPrimary"
+        app:tabTextColor="?attr/colorOnSurfaceVariant"
         app:tabMode="fixed"
         app:tabGravity="fill" />
 

@@ -20,8 +20,7 @@ The app must be a complete, usable, **offline-first** attendance system through 
 - [ ] Usher session persists identity so every record is tagged `registered_by`
 - [ ] Usher selects the current service type for the session
 - [ ] Two-button home screen: Register Member / Register First Timer
-- [ ] Returning members can be found (name/phone) and marked present offline
-- [ ] Unmatched member search redirects into the First Timer flow
+- [ ] Returning members fill the Attendance Sheet form (name/phone autocomplete autofills as a convenience) and are marked present offline — no forced redirect to First Timer on no match
 - [ ] First-timers register in one step → creates Member + FirstTimer + Attendance records
 - [ ] Local review screens show attendance counts, first-timer lists, and follow-up status
 - [ ] CSV export (attendance + first-timers) saved to device and shareable

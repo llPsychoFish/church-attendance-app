@@ -63,14 +63,15 @@
 
 ## Phase 4 — Register Member Flow
 
-**Goal:** Returning members can be found and marked present, fully offline.
+**Goal:** Members can fill in the attendance form and be marked present, fully offline — matching how the physical Attendance Sheet is actually used (filled fresh each service, not looked up).
 
-- Search screen: search by name or phone against local `Member` table
-- On match: confirm and create an `Attendance` record (member_id, service_date, service_type, registered_by, timestamp)
-- On no match: show the redirect message ("We couldn't find you — please use Register First Timer instead") with a button that jumps straight into the First Timer flow
+- Form screen with all Attendance Sheet fields (per `docs/data-field-spec.md` §2): Full Name, Contact, Email, Hall/Hostel/RM, Course, Level, B/Day
+- Lightweight autocomplete on name/phone as the member types, matching against the local `Member` table — purely a convenience; selecting a match autofills the rest of the form
+- On submit (whether autocomplete was used or not): create/update the `Member` record and create an `Attendance` record (member_id, service_date, service_type, registered_by, timestamp)
+- No forced redirect on "no match" — the form is always submittable. The First Timer flow is reached only if the congregant chooses that button on the home screen themselves
 - Return to home screen automatically after successful registration
 
-**Deliverable:** Fully working attendance marking for existing members, offline.
+**Deliverable:** Members can register attendance by filling the same fields as the physical sheet, offline, without being blocked or redirected based on a lookup result.
 
 ---
 

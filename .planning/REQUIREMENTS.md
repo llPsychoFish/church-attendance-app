@@ -40,9 +40,9 @@
 
 ### Register Member Flow (Phase 4)
 
-- [x] **MEMB-01**: Search by name or phone against local `Member` table
-- [x] **MEMB-02**: On match, create `Attendance` record (`member_id`, `service_date`, `service_type`, `registered_by`, `timestamp`)
-- [x] **MEMB-03**: On no match, show redirect message ("We couldn't find you — please use Register First Timer instead") with a jump into the First Timer flow
+- [x] **MEMB-01**: Register Member is a data entry form presenting all Attendance Sheet fields (`docs/data-field-spec.md` §2) — Full Name (surname + first name), Contact/Phone, Email, Hall/Hostel + Room No, Course, Level, B/Day — with lightweight name/phone autocomplete against the local `Member` table as a convenience, not a gate
+- [x] **MEMB-02**: On submit, create or update the `Member` record and create an `Attendance` record (`member_id`, `service_date`, `service_type`, `registered_by`, `timestamp`)
+- [x] **MEMB-03**: No forced redirect on no match — the form is always submittable; the First Timer flow is only an optional suggestion on the same screen (e.g. "First time here?" link), never an automatic navigation
 - [x] **MEMB-04**: Return to home screen automatically after successful registration
 
 ### Register First Timer Flow (Phase 5)

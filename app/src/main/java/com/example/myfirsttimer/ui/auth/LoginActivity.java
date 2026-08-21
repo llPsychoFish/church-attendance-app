@@ -44,11 +44,9 @@ public class LoginActivity extends AppCompatActivity {
             vm.login(username, pin);
         });
 
-        tvRegister.setOnClickListener(v ->
-                startActivity(new Intent(this, RegisterUsherActivity.class)));
+        tvRegister.setOnClickListener(v -> startActivity(new Intent(this, RegisterUsherActivity.class)));
 
-        tvForgot.setOnClickListener(v ->
-                startActivity(new Intent(this, ResetCredentialsActivity.class)));
+        tvForgot.setOnClickListener(v -> startActivity(new Intent(this, ResetCredentialsActivity.class)));
 
         vm.getAuthResult().observe(this, result -> {
             Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show();

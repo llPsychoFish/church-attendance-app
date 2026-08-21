@@ -1,0 +1,15 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Outer Radiance Halo -->
+    <path
+        android:fillColor="#D4AF37"
+        android:pathData="M12,2L13.5,6.5L18,7.5L14.5,10.5L15.5,15L12,12.8L8.5,15L9.5,10.5L6,7.5L10.5,6.5Z"
+        android:alpha="0.2" />
+    <!-- Cross Motif -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M10.5,4h3v5h5v3h-5v8h-3v-8h-5v-3h5z" />
+</vector>

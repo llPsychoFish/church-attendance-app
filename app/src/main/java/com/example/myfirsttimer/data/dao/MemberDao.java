@@ -27,6 +27,9 @@ public interface MemberDao {
     @Query("SELECT * FROM members WHERE surname LIKE :q OR firstName LIKE :q OR phone LIKE :q ORDER BY surname ASC")
     List<Member> search(String q);
 
+    @Query("SELECT * FROM members WHERE surname LIKE '%' || :q || '%' OR firstName LIKE '%' || :q || '%' OR phone LIKE '%' || :q || '%' ORDER BY surname ASC LIMIT 10")
+    List<Member> searchAutocomplete(String q);
+
     @Query("SELECT * FROM members ORDER BY surname ASC")
     List<Member> getAll();
 }

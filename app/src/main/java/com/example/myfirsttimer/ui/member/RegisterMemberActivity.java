@@ -2,6 +2,8 @@ package com.example.myfirsttimer.ui.member;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -13,26 +15,31 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myfirsttimer.MainActivity;
 import com.example.myfirsttimer.R;
+import com.example.myfirsttimer.data.entity.Member;
 import com.example.myfirsttimer.ui.firsttimer.RegisterFirstTimerActivity;
-import com.example.myfirsttimer.ui.home.ServiceSelectionDialog;
 import com.example.myfirsttimer.util.Constants;
 import com.example.myfirsttimer.util.SessionManager;
 import com.google.android.material.button.MaterialButton;
 
-public class RegisterMemberActivity extends AppCompatActivity implements MemberSearchAdapter.OnMarkPresentListener {
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+public class RegisterMemberActivity extends AppCompatActivity implements MemberSearchAdapter.OnMemberSelectedListener {
 
     private MemberViewModel vm;
     private SessionManager session;
-    private EditText etSearch;
-    private RecyclerView rvResults;
-    private LinearLayout layoutNotFound;
+
+    private EditText etSearch, etSurname, etFirstName, etPhone, etEmail, etDob, etCourse, etLevel, etHall, etRoom;
+    private RecyclerView rvSuggestions;
+    private TextView tvServiceLabel, tvSuccessName;
     private LinearLayout layoutSuccess;
-    private TextView tvResultHeader;
-    private TextView tvServiceLabel;
-    private TextView tvSuccessName;
-    private MemberSearchAdapter adapter;
+    private View scrollForm;
+    private MemberSearchAdapter suggestionAdapter;
+
+    private Member selectedMember;
+    private boolean filling;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,71 +56,134 @@ public class RegisterMemberActivity extends AppCompatActivity implements MemberS
         vm = new ViewModelProvider(this).get(MemberViewModel.class);
 
         etSearch = findViewById(R.id.etSearch);
-        rvResults = findViewById(R.id.rvResults);
-        layoutNotFound = findViewById(R.id.layoutNotFound);
-        layoutSuccess = findViewById(R.id.layoutSuccess);
-        tvResultHeader = findViewById(R.id.tvResultHeader);
+        etSurname = findViewById(R.id.etSurname);
+        etFirstName = findViewById(R.id.etFirstName);
+        etPhone = findViewById(R.id.etPhone);
+        etEmail = findViewById(R.id.etEmail);
+        etDob = findViewById(R.id.etDob);
+        etCourse = findViewById(R.id.etCourse);
+        etLevel = findViewById(R.id.etLevel);
+        etHall = findViewById(R.id.etHall);
+        etRoom = findViewById(R.id.etRoom);
+        rvSuggestions = findViewById(R.id.rvSuggestions);
         tvServiceLabel = findViewById(R.id.tvServiceLabel);
         tvSuccessName = findViewById(R.id.tvSuccessName);
-        MaterialButton btnSearch = findViewById(R.id.btnSearch);
+        layoutSuccess = findViewById(R.id.layoutSuccess);
+        scrollForm = findViewById(R.id.scrollForm);
+        MaterialButton btnSubmit = findViewById(R.id.btnSubmit);
         MaterialButton btnGoFirstTimer = findViewById(R.id.btnGoFirstTimer);
 
-        adapter = new MemberSearchAdapter(this);
-        rvResults.setLayoutManager(new LinearLayoutManager(this));
-        rvResults.setAdapter(adapter);
+        suggestionAdapter = new MemberSearchAdapter(this);
+        rvSuggestions.setLayoutManager(new LinearLayoutManager(this));
+        rvSuggestions.setAdapter(suggestionAdapter);
 
         updateServiceLabel();
 
-        btnSearch.setOnClickListener(v -> doSearch());
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
-        btnGoFirstTimer.setOnClickListener(v -> {
-            startActivity(new Intent(this, RegisterFirstTimerActivity.class));
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (filling) return;
+                selectedMember = null;
+                String query = s.toString().trim();
+                if (query.length() >= 2) {
+                    vm.searchSuggestions(query);
+                } else {
+                    vm.clearSuggestions();
+                }
+            }
         });
 
-        vm.getSearchResults().observe(this, members -> {
+        btnSubmit.setOnClickListener(v -> submit());
+
+        btnGoFirstTimer.setOnClickListener(v ->
+                startActivity(new Intent(this, RegisterFirstTimerActivity.class))
+        );
+
+        vm.getSuggestions().observe(this, members -> {
             if (members != null && !members.isEmpty()) {
-                adapter.setMembers(members);
-                rvResults.setVisibility(View.VISIBLE);
-                tvResultHeader.setVisibility(View.VISIBLE);
-                layoutNotFound.setVisibility(View.GONE);
+                suggestionAdapter.setMembers(members);
+                rvSuggestions.setVisibility(View.VISIBLE);
             } else {
-                rvResults.setVisibility(View.GONE);
-                tvResultHeader.setVisibility(View.GONE);
+                rvSuggestions.setVisibility(View.GONE);
             }
         });
 
-        vm.getNotFound().observe(this, isNotFound -> {
-            if (Boolean.TRUE.equals(isNotFound)) {
-                layoutNotFound.setVisibility(View.VISIBLE);
-                rvResults.setVisibility(View.GONE);
-                tvResultHeader.setVisibility(View.GONE);
-            }
-        });
+        vm.getSelectedMember().observe(this, this::autofill);
 
-        vm.getMarkedMember().observe(this, member -> {
-            if (member != null) {
+        vm.getSuccess().observe(this, success -> {
+            if (Boolean.TRUE.equals(success)) {
+                scrollForm.setVisibility(View.GONE);
                 layoutSuccess.setVisibility(View.VISIBLE);
-                tvSuccessName.setText(member.surname + " " + member.firstName);
-                rvResults.setVisibility(View.GONE);
-                tvResultHeader.setVisibility(View.GONE);
-                layoutNotFound.setVisibility(View.GONE);
-
-                // Return to home after 1.5 seconds
-                rvResults.postDelayed(() -> {
-                    finish();
-                }, 1500);
+                if (selectedMember != null) {
+                    tvSuccessName.setText(selectedMember.surname + " " + selectedMember.firstName);
+                }
+                scrollForm.postDelayed(this::finish, 1500);
             }
         });
     }
 
-    private void doSearch() {
-        String query = etSearch.getText() == null ? "" : etSearch.getText().toString().trim();
-        if (query.isEmpty()) {
-            Toast.makeText(this, "Enter a name or phone number", Toast.LENGTH_SHORT).show();
+    @Override
+    public void onMemberSelected(Member member) {
+        vm.selectMember(member);
+    }
+
+    private void autofill(Member member) {
+        if (member == null) return;
+        filling = true;
+        selectedMember = member;
+        etSearch.setText(trim(member.surname) + " " + trim(member.firstName));
+        etSurname.setText(trim(member.surname));
+        etFirstName.setText(trim(member.firstName));
+        etPhone.setText(trim(member.phone));
+        etEmail.setText(trim(member.email));
+        etDob.setText(trim(member.dateOfBirth));
+        etCourse.setText(trim(member.courseOfStudy));
+        etLevel.setText(trim(member.level));
+        etHall.setText(trim(member.hallHostel));
+        etRoom.setText(trim(member.roomNo));
+        rvSuggestions.setVisibility(View.GONE);
+        filling = false;
+    }
+
+    private void submit() {
+        String surname = textOf(etSurname);
+        String firstName = textOf(etFirstName);
+        String phone = textOf(etPhone);
+
+        if (surname.isEmpty() || firstName.isEmpty() || phone.isEmpty()) {
+            Toast.makeText(this, "Please fill in surname, first name, and phone", Toast.LENGTH_SHORT).show();
             return;
         }
-        layoutSuccess.setVisibility(View.GONE);
-        vm.search(query);
+
+        Member form = new Member();
+        form.id = selectedMember != null ? selectedMember.id : 0L;
+        form.surname = surname;
+        form.firstName = firstName;
+        form.phone = phone;
+        form.email = textOf(etEmail);
+        form.courseOfStudy = textOf(etCourse);
+        form.level = textOf(etLevel);
+        form.hallHostel = textOf(etHall);
+        form.roomNo = textOf(etRoom);
+        form.dateOfBirth = textOf(etDob);
+
+        vm.submitRegistration(form, session.getLoggedInUsherId(), session.getServiceType());
+    }
+
+    private String textOf(EditText et) {
+        return et.getText() == null ? "" : et.getText().toString().trim();
+    }
+
+    private String trim(String s) {
+        return s == null ? "" : s.trim();
     }
 
     private void updateServiceLabel() {
@@ -138,11 +208,6 @@ public class RegisterMemberActivity extends AppCompatActivity implements MemberS
                 label = serviceType;
                 break;
         }
-        tvServiceLabel.setText(label + " — " + new java.text.SimpleDateFormat("dd MMM yyyy", java.util.Locale.US).format(new java.util.Date()));
-    }
-
-    @Override
-    public void onMarkPresent(com.example.myfirsttimer.data.entity.Member member) {
-        vm.markPresent(member, session.getLoggedInUsherId(), session.getServiceType());
+        tvServiceLabel.setText(label + " — " + new SimpleDateFormat("dd MMM yyyy", Locale.US).format(new Date()));
     }
 }

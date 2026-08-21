@@ -64,21 +64,14 @@ public class MainActivity extends AppCompatActivity implements ServiceSelectionD
             updateServiceTypeDisplay();
         }
 
-        btnRegisterMember.setOnClickListener(v ->
-                startActivity(new Intent(this, RegisterMemberActivity.class))
-        );
+        btnRegisterMember.setOnClickListener(v -> startActivity(new Intent(this, RegisterMemberActivity.class)));
 
-        btnRegisterFirstTimer.setOnClickListener(v ->
-                startActivity(new Intent(this, RegisterFirstTimerActivity.class))
-        );
+        btnRegisterFirstTimer
+                .setOnClickListener(v -> startActivity(new Intent(this, RegisterFirstTimerActivity.class)));
 
-        btnViewDashboard.setOnClickListener(v ->
-                startActivity(new Intent(this, ReviewDashboardActivity.class))
-        );
+        btnViewDashboard.setOnClickListener(v -> startActivity(new Intent(this, ReviewDashboardActivity.class)));
 
-        btnExportCsv.setOnClickListener(v ->
-                startActivity(new Intent(this, CsvExportActivity.class))
-        );
+        btnExportCsv.setOnClickListener(v -> startActivity(new Intent(this, CsvExportActivity.class)));
 
         btnLogout.setOnClickListener(v -> {
             session.logout();
@@ -95,7 +88,8 @@ public class MainActivity extends AppCompatActivity implements ServiceSelectionD
 
     private void updateServiceTypeDisplay() {
         String serviceType = session.getServiceType();
-        if (serviceType == null || tvServiceType == null) return;
+        if (serviceType == null || tvServiceType == null)
+            return;
 
         String label;
         switch (serviceType) {

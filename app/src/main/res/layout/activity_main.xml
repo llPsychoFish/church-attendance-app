@@ -5,15 +5,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_off_white"
+    android:background="?android:attr/colorBackground"
     tools:context=".MainActivity">
 
-    <!-- Top Header Banner (Deep Blue with Gold Accent) -->
+    <!-- Top Header Banner (Deep Blue with Gold Accent and Church Logo) -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/headerCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/brand_blue"
+        app:cardBackgroundColor="?attr/colorPrimary"
         app:cardCornerRadius="0dp"
         app:cardElevation="4dp"
         app:strokeWidth="0dp"
@@ -29,24 +29,30 @@
             android:paddingTop="36dp"
             android:paddingBottom="24dp">
 
-            <!-- Gold Subheader Badge -->
-            <TextView
-                android:id="@+id/tvBrandSubtitle"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="CHRIST EMBASSY / BLW"
-                android:textColor="@color/brand_gold"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:letterSpacing="0.1" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvBrandSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CHRIST EMBASSY / BLW"
+                    android:textColor="?attr/colorSecondary"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvAppTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
                 android:text="Church Attendance Portal"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
@@ -56,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Select an option below to proceed with registration"
-                android:textColor="@color/brand_blue_container"
+                android:textColor="?attr/colorPrimaryContainer"
                 android:textSize="14sp" />
 
             <TextView
@@ -65,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text=""
-                android:textColor="@color/brand_gold"
+                android:textColor="?attr/colorSecondary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -92,10 +98,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="@color/surface_white"
+                app:cardBackgroundColor="?attr/colorSurface"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="2dp"
-                app:strokeColor="@color/outline_border"
+                app:strokeColor="?attr/colorOutline"
                 app:strokeWidth="1dp">
 
                 <LinearLayout
@@ -108,7 +114,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Existing Members"
-                        android:textColor="@color/brand_blue"
+                        android:textColor="?attr/colorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold" />
 
@@ -117,7 +123,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:text="Member Attendance"
-                        android:textColor="@color/text_primary"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -127,7 +133,7 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="16dp"
                         android:text="For regular church members and leaders checking into service."
-                        android:textColor="@color/text_secondary"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="13sp" />
 
                     <com.google.android.material.button.MaterialButton
@@ -137,7 +143,10 @@
                         android:layout_height="54dp"
                         android:text="Register Member"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        app:icon="@drawable/ic_member_checkin"
+                        app:iconGravity="textStart"
+                        app:iconPadding="8dp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -147,10 +156,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                app:cardBackgroundColor="@color/surface_white"
+                app:cardBackgroundColor="?attr/colorSurface"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="2dp"
-                app:strokeColor="@color/brand_gold"
+                app:strokeColor="?attr/colorSecondary"
                 app:strokeWidth="1.5dp">
 
                 <LinearLayout
@@ -170,7 +179,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Warm Welcome"
-                            android:textColor="@color/brand_gold_dark"
+                            android:textColor="?attr/colorSecondary"
                             android:textSize="12sp"
                             android:textStyle="bold" />
 
@@ -178,11 +187,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@color/brand_gold_container"
+                            android:background="?attr/colorSecondaryContainer"
                             android:paddingHorizontal="8dp"
                             android:paddingVertical="2dp"
                             android:text="FIRST TIMER"
-                            android:textColor="@color/on_gold_container"
+                            android:textColor="?attr/colorOnSecondaryContainer"
                             android:textSize="10sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -192,7 +201,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:text="First-Time Visitor"
-                        android:textColor="@color/text_primary"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -202,7 +211,7 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="16dp"
                         android:text="Welcome new worshippers and record details for follow-up."
-                        android:textColor="@color/text_secondary"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="13sp" />
 
                     <com.google.android.material.button.MaterialButton
@@ -212,7 +221,10 @@
                         android:layout_height="54dp"
                         android:text="Register First Timer"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        app:icon="@drawable/ic_first_timer_welcome"
+                        app:iconGravity="textStart"
+                        app:iconPadding="8dp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -220,7 +232,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/brand_blue_container"
+                app:cardBackgroundColor="?attr/colorPrimaryContainer"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="0dp"
                 app:strokeWidth="0dp">
@@ -230,7 +242,7 @@
                     android:layout_height="wrap_content"
                     android:padding="16dp"
                     android:text="Ushers: Confirm the correct button selection (Blue for Members, Gold for First Timers) before handing the device to worshippers."
-                    android:textColor="@color/on_blue_container"
+                    android:textColor="?attr/colorOnPrimaryContainer"
                     android:textSize="12sp" />
             </com.google.android.material.card.MaterialCardView>
 
@@ -241,13 +253,15 @@
                 android:layout_height="54dp"
                 android:layout_marginTop="16dp"
                 android:text="View Dashboard"
-                android:textColor="@color/brand_blue"
+                android:textColor="?attr/colorPrimary"
                 android:textStyle="bold"
-                app:strokeColor="@color/brand_blue"
+                app:strokeColor="?attr/colorPrimary"
                 app:strokeWidth="1dp"
                 app:cornerRadius="12dp"
-                app:icon="@android:drawable/ic_menu_sort_by_size"
-                app:iconTint="@color/brand_blue" />
+                app:icon="@drawable/ic_dashboard"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp"
+                app:iconTint="?attr/colorPrimary" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnExportCsv"
@@ -256,21 +270,29 @@
                 android:layout_height="54dp"
                 android:layout_marginTop="8dp"
                 android:text="Export CSV"
-                android:textColor="@color/brand_gold_dark"
+                android:textColor="?attr/colorSecondary"
                 android:textStyle="bold"
-                app:strokeColor="@color/brand_gold"
+                app:strokeColor="?attr/colorSecondary"
                 app:strokeWidth="1dp"
                 app:cornerRadius="12dp"
-                app:icon="@android:drawable/ic_menu_save"
-                app:iconTint="@color/brand_gold_dark" />
+                app:icon="@drawable/ic_export_csv"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp"
+                app:iconTint="?attr/colorSecondary" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogout"
+                style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_marginTop="8dp"
                 android:text="Log out"
-                android:textStyle="bold" />
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:textStyle="bold"
+                app:icon="@drawable/ic_logout"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp"
+                app:iconTint="?attr/colorOnSurfaceVariant" />
 
         </LinearLayout>
     </ScrollView>

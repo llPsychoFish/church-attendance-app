@@ -63,14 +63,14 @@
 **Dependencies:** Phase 2
 
 ## Phase 4 — Register Member Flow (original-roadmap Phase 4)
-**Objective:** Returning members found and marked present, fully offline.
+**Objective:** Members fill the Attendance Sheet form and are marked present, fully offline — matching how the physical sheet is actually used (filled fresh each service, not looked up).
 **Plans:**
-1. `RegisterMemberActivity` search by name or phone against local `Member` table.
-2. On match: create `Attendance` record (`member_id`, `service_date`, `service_type`, `registered_by`, `timestamp`).
-3. On no match: redirect message + button jumping into the First Timer flow.
+1. `RegisterMemberActivity` data entry form with all Attendance Sheet fields (surname + first name, phone, email, hall/hostel + room no, course of study, level, date of birth) per `docs/data-field-spec.md` §2.
+2. On submit: create/update the `Member` record and create an `Attendance` record (`member_id`, `service_date`, `service_type`, `registered_by`, `timestamp`).
+3. Lightweight autocomplete on name/phone against the local `Member` table — selecting a match autofills the rest of the form; no match is never a block. The First Timer flow is only an optional suggestion link on the same screen, never a forced redirect.
 4. Auto-return to home after success.
 **Requirements:** MEMB-01..04
-**Verification:** Known member marked present; unknown search shows redirect and opens First Timer; attendance row persisted.
+**Verification:** Member fills the form and attendance row is persisted; autocomplete autofills on match; submitting without a match still works; no forced navigation to First Timer.
 **Dependencies:** Phase 3
 
 ## Phase 5 — Register First Timer Flow (original-roadmap Phase 5)

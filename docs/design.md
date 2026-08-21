@@ -14,18 +14,19 @@ This app is for a Christ Embassy / BLW (Believers' LoveWorld) campus ministry. T
 
 ## 2. Color Palette
 
-| Token | Hex | Usage |
-|---|---|---|
-| `color_primary` | `#1A237E` | App bar, primary buttons, headers — toned-down version of brand blue (`#0016BE`) for better on-screen contrast |
-| `color_primary_dark` | `#0016BE` | Status bar, pressed states — closer to true brand blue |
-| `color_accent_gold` | `#D4AF37` | Register First Timer button, highlights, launcher icon accent — **use sparingly, never as a large background** |
-| `color_background` | `#FAFAFA` | Screen backgrounds |
-| `color_surface` | `#FFFFFF` | Cards, form fields, list rows |
-| `color_text_primary` | `#1A1A1A` | Body text, labels |
-| `color_text_secondary` | `#5F5F5F` | Hints, secondary labels, timestamps |
-| `color_error` | `#B00020` | Validation errors, "member not found" redirect message |
-| `color_success` | `#2E7D32` | Confirmation states (e.g. "Attendance marked") |
-| `color_divider` | `#E0E0E0` | List dividers, form section separators |
+| Token | Light Hex | Dark Hex | Usage |
+|---|---|---|---|
+| `color_primary` | `#1A237E` | `#3D5AFE` | App bar, primary buttons, headers |
+| `color_primary_dark` | `#0016BE` | `#1A237E` | Status bar, pressed states |
+| `color_accent_gold` | `#D4AF37` | `#FFC107` | Register First Timer button, highlights — accent tone |
+| `color_background` | `#FAFAFA` | `#0F1426` | Screen backgrounds |
+| `color_surface` | `#FFFFFF` | `#1B2238` | Cards, form fields, list rows |
+| `color_surface_variant` | `#F0F4F8` | `#252D4A` | Secondary surface cards, input backgrounds |
+| `color_text_primary` | `#1A1A1A` | `#F0F2F8` | Body text, labels |
+| `color_text_secondary` | `#5F5F5F` | `#94A3B8` | Hints, secondary labels, timestamps |
+| `color_error` | `#B00020` | `#FF5252` | Validation errors, alert messages |
+| `color_success` | `#2E7D32` | `#4CAF50` | Confirmation states |
+| `color_divider` | `#E0E0E0` | `#2E3856` | List dividers, form section separators |
 
 **Rules for AI agents generating UI:**
 
@@ -65,35 +66,40 @@ This app is for a Christ Embassy / BLW (Believers' LoveWorld) campus ministry. T
 ## 5. Component Guidance
 
 ### Buttons
-- Primary actions: filled, rounded corners (8dp radius), `color_primary` or `color_accent_gold` per §2
+- Primary actions: filled, rounded corners (12dp radius), `color_primary` or `color_accent_gold` per §2
 - Secondary/cancel actions: outlined or text-only, never filled — avoid competing with the primary action visually
 
 ### Forms
-- Use `TextInputLayout` with floating labels (Material), not placeholder-only fields — floating labels stay visible after typing starts, reducing errors for first-time users
+- Use `TextInputLayout` with floating labels (Material) and start icons (`ic_person`, `ic_phone`, etc.) to provide visual cues for users.
 - Group related fields visually (e.g., Hall/Hostel + Room No. on the same row) rather than a single flat list, mirroring the physical card's layout
 
 ### Lists (review screens, search results)
 - Simple `RecyclerView` rows: name + one or two secondary details (e.g., phone, service type), `color_divider` between rows
-- No unnecessary card elevation/shadows — flat list rows keep the review screens fast to scan
+- Flat card elevation (2dp) with theme surface background (`?attr/colorSurface`) ensures high contrast in both Light & Dark modes.
 
 ### Checkboxes (Department Interest)
-- Standard Material checkboxes, listed vertically, matching the order on the physical card (Ushering, Choir, Technical, Creative Art, Media & New Media, Innovations) — don't reorder or alphabetize; consistency with the paper form matters more than any other ordering logic here
+- Standard Material checkboxes, listed vertically, matching the order on the physical card (Ushering, Choir, Technical, Creative Art, Media & New Media, Innovations).
 
 ---
 
-## 6. Iconography
+## 6. Iconography & Custom Drawables
 
-- Use standard Material Icons (`androidx.vectordrawable`) — no custom icon set needed for v1
-- Icon color follows context: `color_primary` on light backgrounds, white on filled primary-color buttons
-- Keep icon usage minimal — this app prioritizes clarity and speed for non-technical users over visual flourish
+- Use custom vector drawables (`res/drawable/`) tailored for church branding and form entry:
+  - `ic_church_logo`: App title bar & header logo badge
+  - `ic_member_checkin`: Register Member quick action button
+  - `ic_first_timer_welcome`: Register First Timer quick action button
+  - `ic_dashboard`, `ic_export_csv`, `ic_logout`: Admin / action buttons
+  - `ic_person`, `ic_phone`, `ic_email`, `ic_location`, `ic_school`, `ic_calendar`, `ic_lock`, `ic_search`: Text field start icons
+- Icon color follows context: `colorPrimary` / `colorOnSurfaceVariant` in form fields, white / dark text on filled primary buttons.
 
 ---
 
-## 7. Accessibility & Practical Constraints
+## 7. Accessibility & Dual Theme Support
 
-- High contrast, light-mode-only for v1 (no dark mode) — the app is used in bright church halls and handed to people who may not be tech-savvy; a bright, obvious UI beats a "sleek" dark one here
-- Text should never drop below 13sp (Caption level)
-- Every interactive element needs a visible label — no icon-only buttons for primary actions (Register Member / Register First Timer must always show text, not just an icon)
+- Both Light and Dark themes strictly maintain contrast ratios conforming to WCAG AA guidelines.
+- Layouts must reference theme attributes (`?attr/colorBackground`, `?attr/colorSurface`, `?attr/colorOnSurface`, `?attr/colorPrimary`) rather than static hex codes.
+- Text should never drop below 13sp.
+- Every interactive element needs a visible label — no icon-only buttons for primary actions.
 
 ---
 
@@ -102,13 +108,14 @@ This app is for a Christ Embassy / BLW (Believers' LoveWorld) campus ministry. T
 **Do:**
 - Keep the two home-screen buttons large, distinct in color, and text-labeled
 - Match form field order to the physical paper cards (First Timer Card, Attendance Sheet)
-- Use gold as a small accent, blue as the dominant tone
+- Use theme attributes (`?attr/...`) in XML layouts so Light & Dark modes switch dynamically
+- Use clean vector start icons in text input fields for immediate visual context
 
 **Don't:**
 - Introduce new colors without adding them to §2 first
 - Use uppercase button text
 - Use icon-only buttons for core actions
-- Add dark mode, animations, or visual flourishes that aren't in this document — if it's not specified here, default to the simplest Material implementation rather than improvising a new style
+- Hardcode `@color/bg_off_white` or `@color/white` on layout containers that need dark mode contrast
 
 ---
 

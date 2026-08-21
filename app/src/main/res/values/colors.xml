@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Design System Tokens (docs/design.md) -->
+    <!-- Design System Tokens — Light Mode (docs/design.md) -->
     <color name="color_primary">#1A237E</color>
     <color name="color_primary_dark">#0016BE</color>
     <color name="color_accent_gold">#D4AF37</color>
     <color name="color_background">#FAFAFA</color>
     <color name="color_surface">#FFFFFF</color>
+    <color name="color_surface_variant">#F0F4F8</color>
     <color name="color_text_primary">#1A1A1A</color>
     <color name="color_text_secondary">#5F5F5F</color>
     <color name="color_error">#B00020</color>
     <color name="color_success">#2E7D32</color>
     <color name="color_divider">#E0E0E0</color>
+
+    <!-- Design System Tokens — Dark Mode (docs/design.md) -->
+    <color name="dark_color_primary">#3D5AFE</color>
+    <color name="dark_color_primary_dark">#1A237E</color>
+    <color name="dark_color_accent_gold">#FFC107</color>
+    <color name="dark_color_background">#0F1426</color>
+    <color name="dark_color_surface">#1B2238</color>
+    <color name="dark_color_surface_variant">#252D4A</color>
+    <color name="dark_color_text_primary">#F0F2F8</color>
+    <color name="dark_color_text_secondary">#94A3B8</color>
+    <color name="dark_color_error">#FF5252</color>
+    <color name="dark_color_success">#4CAF50</color>
+    <color name="dark_color_divider">#2E3856</color>
 
     <!-- Brand Primary Colors (Deep Blue Aliases) -->
     <color name="brand_blue">#1A237E</color>
@@ -19,12 +33,18 @@
     <color name="brand_blue_container">#E8EAF6</color>
     <color name="on_blue_container">#1A237E</color>
 
+    <color name="dark_brand_blue_container">#1E294A</color>
+    <color name="dark_on_blue_container">#C5CAE9</color>
+
     <!-- Brand Accent Colors (Gold Aliases) -->
     <color name="brand_gold">#D4AF37</color>
-    <color name="brand_gold_light">#D4AF37</color>
+    <color name="brand_gold_light">#E5C158</color>
     <color name="brand_gold_dark">#997500</color>
     <color name="brand_gold_container">#FFF8E1</color>
     <color name="on_gold_container">#4A3800</color>
+
+    <color name="dark_brand_gold_container">#382E0B</color>
+    <color name="dark_on_gold_container">#FFE082</color>
 
     <!-- Backgrounds & Surfaces Aliases -->
     <color name="bg_off_white">#FAFAFA</color>

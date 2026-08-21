@@ -44,7 +44,7 @@
 | Level | `member.level` | string | No | Same field as the First Timer Card |
 | B/Day (Birthday) | `member.date_of_birth` | date | No | Same field as the First Timer Card's Date of Birth |
 
-**Key implication:** Every field on the Attendance Sheet already exists on the Member record from the First Timer Card. This confirms the original design — a **returning member** should never re-enter this data; they only need to be found and marked present. Only a **first-timer** fills the full form.
+**Key implication:** Every field on the Attendance Sheet already exists on the Member record from the First Timer Card. But note what the physical sheet actually is: a **fill-in-fresh form each service**, not a lookup register — members write their details on it every time they attend, not just once. The app's Register Member screen must mirror this: it's a **data entry form** (all fields above), not a search-only screen. A name/phone lookup can offer autocomplete as a convenience (autofilling the rest of the fields when a match is found), but it is never a gate — a member who isn't found, or whose autocomplete doesn't trigger, can still fill the form manually and submit normally. There is no forced redirect to the First Timer flow; that flow is reached only by the congregant's own choice from the home screen (see design-doc.md §3), never as an automatic consequence of a failed member search.
 
 ---
 
@@ -159,7 +159,7 @@ public class Attendance {
 ## 5. Frontend Form Implications
 
 - **First Timer form** should be built as a single scrollable form matching §1 field-for-field, including the department checkboxes as a multi-select group (not a dropdown, to match the physical card's UX)
-- **Register Member (search) flow** doesn't need any of these fields re-entered — it only needs enough to search (name or phone) and confirm a match, since everything else already lives on the `Member` record from their first-timer registration
+- **Register Member flow is a data entry form, not a search-only screen** — it presents all the Attendance Sheet fields (§2) for the member to fill in, matching how the physical sheet is actually used (filled fresh each service). Name/phone autocomplete against the existing `Member` table is a convenience that autofills the rest of the form on match — it must never block or force-redirect submission when no match is found. The redirect to Register First Timer is reached only by the congregant tapping that button on the home screen themselves, never automatically.
 - **Service type selector** (Phase 3 of the roadmap) should use the 4-option set from §3, not the original longer list
 
 ## 6. Backend/Sync Implications (Phase 8, Supabase)

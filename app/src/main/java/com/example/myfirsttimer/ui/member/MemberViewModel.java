@@ -14,6 +14,7 @@ import com.example.myfirsttimer.data.repository.AttendanceRepository;
 import com.example.myfirsttimer.data.repository.MemberRepository;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -26,9 +27,9 @@ public class MemberViewModel extends AndroidViewModel {
     private final AttendanceRepository attendanceRepo;
     private final ExecutorService executor;
 
-    private final MutableLiveData<List<Member>> searchResults = new MutableLiveData<>();
-    private final MutableLiveData<Member> markedMember = new MutableLiveData<>();
-    private final MutableLiveData<Boolean> notFound = new MutableLiveData<>();
+    private final MutableLiveData<List<Member>> suggestions = new MutableLiveData<>();
+    private final MutableLiveData<Member> selectedMember = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> success = new MutableLiveData<>();
 
     public MemberViewModel(@NonNull Application application) {
         super(application);
@@ -38,38 +39,75 @@ public class MemberViewModel extends AndroidViewModel {
         executor = Executors.newSingleThreadExecutor();
     }
 
-    public LiveData<List<Member>> getSearchResults() {
-        return searchResults;
+    public LiveData<List<Member>> getSuggestions() {
+        return suggestions;
     }
 
-    public LiveData<Member> getMarkedMember() {
-        return markedMember;
+    public LiveData<Member> getSelectedMember() {
+        return selectedMember;
     }
 
-    public LiveData<Boolean> getNotFound() {
-        return notFound;
+    public LiveData<Boolean> getSuccess() {
+        return success;
     }
 
-    public void search(String query) {
+    public void searchSuggestions(String query) {
         executor.execute(() -> {
-            List<Member> results = memberRepo.search(query);
-            searchResults.postValue(results);
-            notFound.postValue(results.isEmpty());
+            List<Member> results = memberRepo.searchAutocomplete(query);
+            suggestions.postValue(results);
         });
     }
 
-    public void markPresent(Member member, long usherId, String serviceType) {
+    public void clearSuggestions() {
+        suggestions.postValue(new ArrayList<>());
+        selectedMember.postValue(null);
+    }
+
+    public void selectMember(Member member) {
+        selectedMember.postValue(member);
+        suggestions.postValue(new ArrayList<>());
+    }
+
+    public void submitRegistration(Member member, long usherId, String serviceType) {
         executor.execute(() -> {
+            Member existing = null;
+            if (member.id > 0) {
+                existing = memberRepo.getById(member.id);
+            } else if (member.phone != null && !member.phone.isEmpty()) {
+                existing = memberRepo.getByPhone(member.phone);
+            }
+
+            long memberId;
+            if (existing != null) {
+                existing.surname = member.surname;
+                existing.firstName = member.firstName;
+                existing.phone = member.phone;
+                existing.email = member.email;
+                existing.courseOfStudy = member.courseOfStudy;
+                existing.level = member.level;
+                existing.hallHostel = member.hallHostel;
+                existing.roomNo = member.roomNo;
+                existing.dateOfBirth = member.dateOfBirth;
+                memberRepo.update(existing);
+                memberId = existing.id;
+            } else {
+                member.joinDate = new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(new Date());
+                member.isFirstTimerOrigin = false;
+                member.synced = false;
+                memberId = memberRepo.insert(member);
+            }
+
             String today = new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(new Date());
             Attendance attendance = new Attendance();
-            attendance.memberId = member.id;
+            attendance.memberId = memberId;
             attendance.serviceDate = today;
             attendance.serviceType = serviceType;
             attendance.registeredBy = usherId;
             attendance.timestamp = System.currentTimeMillis();
             attendance.synced = false;
             attendanceRepo.insert(attendance);
-            markedMember.postValue(member);
+
+            success.postValue(true);
         });
     }
 }

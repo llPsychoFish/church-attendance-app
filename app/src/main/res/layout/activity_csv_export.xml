@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/bg_off_white">
+    android:background="?android:attr/colorBackground">
 
     <!-- Header Banner -->
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/brand_blue"
+        app:cardBackgroundColor="?attr/colorPrimary"
         app:cardCornerRadius="0dp"
         app:cardElevation="4dp"
         app:strokeWidth="0dp">
@@ -23,21 +23,36 @@
             android:paddingTop="36dp"
             android:paddingBottom="20dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="CSV EXPORT"
-                android:textColor="@color/brand_gold"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:letterSpacing="0.1" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="Export Icon"
+                    android:src="@drawable/ic_export_csv"
+                    app:tint="?attr/colorSecondary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CSV EXPORT"
+                    android:textColor="?attr/colorSecondary"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Export Attendance Data"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
@@ -46,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Generate CSV files to share via email, WhatsApp, or Bluetooth"
-                android:textColor="@color/brand_blue_container"
+                android:textColor="?attr/colorPrimaryContainer"
                 android:textSize="14sp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -68,10 +83,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="@color/surface_white"
+                app:cardBackgroundColor="?attr/colorSurface"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="1dp"
-                app:strokeColor="@color/outline_border"
+                app:strokeColor="?attr/colorOutline"
                 app:strokeWidth="0.5dp">
 
                 <LinearLayout
@@ -84,7 +99,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Select Date"
-                        android:textColor="@color/brand_blue"
+                        android:textColor="?attr/colorPrimary"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -94,8 +109,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginTop="8dp"
-                        android:textColor="@color/text_primary"
-                        app:cornerRadius="8dp" />
+                        android:textColor="?attr/colorOnSurface"
+                        app:cornerRadius="8dp"
+                        app:icon="@drawable/ic_calendar"
+                        app:iconTint="?attr/colorPrimary" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -104,10 +121,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="@color/surface_white"
+                app:cardBackgroundColor="?attr/colorSurface"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="1dp"
-                app:strokeColor="@color/outline_border"
+                app:strokeColor="?attr/colorOutline"
                 app:strokeWidth="0.5dp">
 
                 <LinearLayout
@@ -120,7 +137,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Service Type (Optional)"
-                        android:textColor="@color/brand_blue"
+                        android:textColor="?attr/colorPrimary"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -129,7 +146,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:text="Leave empty to export all services for the date"
-                        android:textColor="@color/text_secondary"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="12sp" />
 
                     <Spinner
@@ -146,10 +163,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="@color/surface_white"
+                app:cardBackgroundColor="?attr/colorSurface"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="1dp"
-                app:strokeColor="@color/outline_border"
+                app:strokeColor="?attr/colorOutline"
                 app:strokeWidth="0.5dp">
 
                 <LinearLayout
@@ -162,7 +179,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Export by Date"
-                        android:textColor="@color/brand_blue"
+                        android:textColor="?attr/colorPrimary"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -174,7 +191,10 @@
                         android:layout_marginTop="12dp"
                         android:text="Export Attendance CSV"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        app:icon="@drawable/ic_export_csv"
+                        app:iconGravity="textStart"
+                        app:iconPadding="8dp" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnExportFirstTimers"
@@ -184,7 +204,10 @@
                         android:layout_marginTop="8dp"
                         android:text="Export First Timers CSV"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        app:icon="@drawable/ic_export_csv"
+                        app:iconGravity="textStart"
+                        app:iconPadding="8dp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -193,10 +216,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="@color/surface_white"
+                app:cardBackgroundColor="?attr/colorSurface"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="1dp"
-                app:strokeColor="@color/brand_gold"
+                app:strokeColor="?attr/colorSecondary"
                 app:strokeWidth="1dp">
 
                 <LinearLayout
@@ -209,7 +232,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Full Export"
-                        android:textColor="@color/brand_gold_dark"
+                        android:textColor="?attr/colorSecondary"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -219,7 +242,7 @@
                         android:layout_marginTop="2dp"
                         android:layout_marginBottom="12dp"
                         android:text="Export all attendance records across all dates"
-                        android:textColor="@color/text_secondary"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="12sp" />
 
                     <com.google.android.material.button.MaterialButton
@@ -228,12 +251,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="54dp"
                         android:text="Export Full Attendance"
-                        android:textColor="@color/brand_blue"
+                        android:textColor="?attr/colorPrimary"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         app:cornerRadius="12dp"
-                        app:strokeColor="@color/brand_blue"
-                        app:strokeWidth="1dp" />
+                        app:strokeColor="?attr/colorPrimary"
+                        app:strokeWidth="1dp"
+                        app:icon="@drawable/ic_export_csv"
+                        app:iconGravity="textStart"
+                        app:iconPadding="8dp"
+                        app:iconTint="?attr/colorPrimary" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -245,10 +272,10 @@
         android:id="@+id/tvStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/brand_blue_container"
+        android:background="?attr/colorPrimaryContainer"
         android:gravity="center"
         android:paddingVertical="12dp"
-        android:textColor="@color/on_blue_container"
+        android:textColor="?attr/colorOnPrimaryContainer"
         android:textSize="13sp"
         android:visibility="gone" />
 

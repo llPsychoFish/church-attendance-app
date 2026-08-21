@@ -10,21 +10,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myfirsttimer.R;
 import com.example.myfirsttimer.data.entity.Member;
-import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MemberSearchAdapter extends RecyclerView.Adapter<MemberSearchAdapter.ViewHolder> {
 
-    public interface OnMarkPresentListener {
-        void onMarkPresent(Member member);
+    public interface OnMemberSelectedListener {
+        void onMemberSelected(Member member);
     }
 
     private List<Member> members = new ArrayList<>();
-    private final OnMarkPresentListener listener;
+    private final OnMemberSelectedListener listener;
 
-    public MemberSearchAdapter(OnMarkPresentListener listener) {
+    public MemberSearchAdapter(OnMemberSelectedListener listener) {
         this.listener = listener;
     }
 
@@ -44,10 +43,11 @@ public class MemberSearchAdapter extends RecyclerView.Adapter<MemberSearchAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Member member = members.get(position);
-        String fullName = member.surname + " " + member.firstName;
-        holder.tvName.setText(fullName);
+        String surname = member.surname == null ? "" : member.surname;
+        String firstName = member.firstName == null ? "" : member.firstName;
+        holder.tvName.setText((surname + " " + firstName).trim());
         holder.tvPhone.setText(member.phone != null ? member.phone : "");
-        holder.btnMarkPresent.setOnClickListener(v -> listener.onMarkPresent(member));
+        holder.itemView.setOnClickListener(v -> listener.onMemberSelected(member));
     }
 
     @Override
@@ -58,13 +58,11 @@ public class MemberSearchAdapter extends RecyclerView.Adapter<MemberSearchAdapte
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvName;
         TextView tvPhone;
-        MaterialButton btnMarkPresent;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tvMemberName);
             tvPhone = itemView.findViewById(R.id.tvMemberPhone);
-            btnMarkPresent = itemView.findViewById(R.id.btnMarkPresent);
         }
     }
 }

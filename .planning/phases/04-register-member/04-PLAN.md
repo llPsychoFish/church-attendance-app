@@ -1,106 +1,96 @@
 # Phase 4 — Register Member Flow
 
-**Objective:** Returning members found and marked present, fully offline.
+**Objective:** Members fill the Attendance Sheet form and are marked present, fully offline — matching how the physical sheet is actually used (filled fresh each service, not looked up). Autocomplete is a convenience, never a gate; there is no forced redirect to the First Timer flow.
 
 **Requirements:** MEMB-01, MEMB-02, MEMB-03, MEMB-04
 
 ---
 
-## Task 1: Create MemberRepository
+## Task 1: Add autocomplete query to Member layer
 
-**Files:** `data/repository/MemberRepository.java`
+**Files:** `data/dao/MemberDao.java`, `data/repository/MemberRepository.java`
 
-- Wraps `MemberDao` with search, insert, update, getById, getByPhone methods
-- Follows existing `UsherRepository` pattern
+- Add substring autocomplete query (`searchAutocomplete`) matching surname, first name, or phone
+- Repository wraps it with trim + empty-query guard
 
 **Acceptance Criteria:**
-- `search(query)` returns matching members by name or phone
-- `insert(member)` persists a new member
+- Typing a partial name or phone returns matching members
+- Empty/blank query returns an empty list
 
 ---
 
-## Task 2: Create AttendanceRepository
-
-**Files:** `data/repository/AttendanceRepository.java`
-
-- Wraps `AttendanceDao` with insert, getById, getByMember, getByDate, countByDateAndService
-- Follows existing `UsherRepository` pattern
-
-**Acceptance Criteria:**
-- `insert(attendance)` persists an attendance record
-- `countByDateAndService(date, type)` returns count for review screens
-
----
-
-## Task 3: Create MemberSearchAdapter
-
-**Files:** `ui/member/MemberSearchAdapter.java`, `res/layout/item_member_search.xml`
-
-- RecyclerView adapter showing member name, phone, and "Mark Present" button
-- Callback interface `OnMarkPresentListener`
-
-**Acceptance Criteria:**
-- List items show member name and phone
-- "Mark Present" button triggers callback with the member
-
----
-
-## Task 4: Create MemberViewModel
+## Task 2: Create/Update + attendance in MemberViewModel
 
 **Files:** `ui/member/MemberViewModel.java`
 
-- AndroidViewModel with search and markPresent methods
-- Uses executor for background DB operations
-- Exposes LiveData for search results, marked member, not-found state
+- Exposes `suggestions`, `selectedMember`, and `success` LiveData
+- `searchSuggestions(query)` populates suggestions as the member types
+- `selectMember(member)` remembers a tapped suggestion (survives rotation)
+- `submitRegistration(...)` on the executor: find existing member by selected id or phone → update it; otherwise insert a new Member (`is_first_timer_origin = false`, `joinDate` set); then insert an `Attendance` record (member_id, service_date, service_type, registered_by, timestamp)
 
 **Acceptance Criteria:**
-- `search(query)` populates `searchResults` LiveData
-- `markPresent(member, usherId, serviceType)` creates Attendance record and populates `markedMember`
+- Submit creates an Attendance row for a new or updated member
+- Submitting with a matching phone updates the existing record instead of duplicating
 
 ---
 
-## Task 5: Create RegisterMemberActivity
+## Task 3: Suggestion adapter (tap to autofill)
+
+**Files:** `ui/member/MemberSearchAdapter.java`, `res/layout/item_member_search.xml`
+
+- RecyclerView adapter showing member name + phone as tappable suggestion rows
+- Callback interface `OnMemberSelectedListener`; tapping a row fills the form, no "Mark Present" button
+
+**Acceptance Criteria:**
+- Suggestions show name and phone
+- Tapping a suggestion triggers the autofill callback
+
+---
+
+## Task 4: RegisterMemberActivity — data entry form
 
 **Files:** `ui/member/RegisterMemberActivity.java`, `res/layout/activity_register_member.xml`
 
-- Search field + search button
-- RecyclerView showing search results
-- "Not found" state with redirect to First Timer flow
-- Success state with auto-return to home after 1.5s
+- Form with all Attendance Sheet fields per `docs/data-field-spec.md` §2: surname + first name (required), phone (required), email, hall/hostel + room no, course of study, level, date of birth
+- Lookup field with live autocomplete suggestions (min 2 chars); selecting one autofills the form
+- Submit button saves/updates the Member and marks attendance; no match is never a block
+- Optional "First time here? Register as a first timer instead" link (text button) — never an automatic redirect
+- Success state with auto-return to home after ~1.5s
 - Displays current service type and date in header
 
 **Acceptance Criteria:**
-- Search by name or phone finds matching members
-- "Mark Present" creates attendance record and shows success
-- "Member not found" shows redirect message with First Timer button
+- Form can be filled and submitted with zero lookup
+- Tapping an autocomplete match autofills all fields
+- First Timer flow is reachable only via the optional link, never automatically
 - Auto-returns to home after success
 
 ---
 
-## Task 6: Wire navigation and manifest
+## Task 5: Wire navigation and manifest
 
 **Files:** `MainActivity.java`, `AndroidManifest.xml`
 
-- Register Member button navigates to `RegisterMemberActivity`
-- Activity registered in manifest
+- Register Member button navigates to `RegisterMemberActivity` (unchanged)
+- Activity registered in manifest (already present)
 
 **Acceptance Criteria:**
-- Tapping "Register Member" on home screen opens the search screen
+- Tapping "Register Member" on home screen opens the form screen
 - Back navigation returns to home
 
 ---
 
 ## Verification
 
-- [ ] MEMB-01: Search by name or phone against local Member table
-- [ ] MEMB-02: On match, create Attendance record (member_id, service_date, service_type, registered_by, timestamp)
-- [ ] MEMB-03: On no match, show redirect message with jump into First Timer flow
+- [ ] MEMB-01: Register Member is a data entry form with Attendance Sheet fields + autocomplete convenience
+- [ ] MEMB-02: Submit creates or updates the Member record and creates an Attendance record (member_id, service_date, service_type, registered_by, timestamp)
+- [ ] MEMB-03: No forced redirect on no match; First Timer is an optional suggestion only
 - [ ] MEMB-04: Return to home screen automatically after successful registration
 
 ## must_haves
 
-- Member search works by name or phone
-- Attendance record created with correct fields on "Mark Present"
-- "Not found" state shows redirect to First Timer flow
+- Member form matches the physical Attendance Sheet field order
+- Autocomplete autofills on match but never blocks manual entry or submit
+- Attendance record created with correct fields on submit
+- First Timer flow reachable only via optional link, not automatic navigation
 - Auto-return to home after successful attendance marking
 - Service type and date displayed in header

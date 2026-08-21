@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base application light theme -->
     <style name="Base.Theme.MyFirstTimer" parent="Theme.Material3.Light.NoActionBar">
         <!-- Material 3 Color Palette mapping -->
         <item name="colorPrimary">@color/color_primary</item>
@@ -16,12 +16,12 @@
 
         <item name="android:colorBackground">@color/color_background</item>
         <item name="colorSurface">@color/color_surface</item>
+        <item name="colorSurfaceVariant">@color/color_surface_variant</item>
         <item name="colorOnSurface">@color/color_text_primary</item>
         <item name="colorOnSurfaceVariant">@color/color_text_secondary</item>
 
         <item name="colorError">@color/color_error</item>
         <item name="colorOnError">@color/white</item>
-        <item name="colorErrorContainer">@color/error_container</item>
 
         <item name="colorOutline">@color/color_divider</item>
 
@@ -29,12 +29,24 @@
         <item name="android:statusBarColor">@color/color_primary</item>
         <item name="android:windowLightStatusBar">false</item>
 
-        <!-- Disable uppercase buttons app-wide per design spec -->
+        <!-- Global Text Transformations -->
         <item name="textAllCaps">false</item>
         <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="Theme.MyFirstTimer" parent="Base.Theme.MyFirstTimer" />
+
+    <!-- Splash / Landing screen: single landing that merges with the system splash.
+         Background uses the theme window background so it adapts to Light/Dark.
+         The animated icon is pngegg.png (shared with the launcher icon). -->
+    <style name="Theme.MyFirstTimer.Splash" parent="Theme.MyFirstTimer">
+        <item name="android:windowBackground">?android:attr/colorBackground</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:navigationBarColor">?android:attr/colorBackground</item>
+        <item name="android:windowSplashScreenBackground" tools:targetApi="31">?android:attr/colorBackground</item>
+        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="31">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/Theme.MyFirstTimer</item>
+    </style>
 
     <!-- Button Style: Routine Member Registration (Deep Blue) -->
     <style name="Widget.App.Button.Member" parent="Widget.Material3.Button">

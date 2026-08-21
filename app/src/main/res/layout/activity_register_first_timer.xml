@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/bg_off_white">
+    android:background="?android:attr/colorBackground">
 
     <!-- Header -->
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/brand_gold"
+        app:cardBackgroundColor="?attr/colorSecondary"
         app:cardCornerRadius="0dp"
         app:cardElevation="4dp"
         app:strokeWidth="0dp">
@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Register First Timer"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnSecondary"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text=""
-                android:textColor="@color/on_gold_container"
+                android:textColor="?attr/colorOnSecondaryContainer"
                 android:textSize="14sp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -59,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Personal Information"
-                android:textColor="@color/brand_blue"
+                android:textColor="?attr/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="12dp" />
@@ -69,7 +69,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Surname *"
                 android:layout_marginBottom="8dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:startIconDrawable="@drawable/ic_person"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etSurname"
                     android:layout_width="match_parent"
@@ -82,7 +83,8 @@
                 android:layout_height="wrap_content"
                 android:hint="First Name *"
                 android:layout_marginBottom="8dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:startIconDrawable="@drawable/ic_person"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etFirstName"
                     android:layout_width="match_parent"
@@ -95,7 +97,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Phone Number *"
                 android:layout_marginBottom="8dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:startIconDrawable="@drawable/ic_phone"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPhone"
                     android:layout_width="match_parent"
@@ -108,7 +111,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Email"
                 android:layout_marginBottom="8dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:startIconDrawable="@drawable/ic_email"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etEmail"
                     android:layout_width="match_parent"
@@ -121,7 +125,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Date of Birth (DD/MM/YYYY)"
                 android:layout_marginBottom="16dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:startIconDrawable="@drawable/ic_calendar"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etDob"
                     android:layout_width="match_parent"
@@ -134,7 +139,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Academic Details"
-                android:textColor="@color/brand_blue"
+                android:textColor="?attr/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="12dp" />
@@ -144,7 +149,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Course of Study"
                 android:layout_marginBottom="8dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:startIconDrawable="@drawable/ic_school"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etCourse"
                     android:layout_width="match_parent"
@@ -157,7 +163,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Level"
                 android:layout_marginBottom="8dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:startIconDrawable="@drawable/ic_school"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etLevel"
                     android:layout_width="match_parent"
@@ -177,7 +184,8 @@
                     android:layout_weight="1"
                     android:hint="Hall/Hostel"
                     android:layout_marginEnd="8dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    app:startIconDrawable="@drawable/ic_location"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etHall"
                         android:layout_width="match_parent"
@@ -190,7 +198,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:hint="Room No"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    app:startIconDrawable="@drawable/ic_location"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etRoom"
                         android:layout_width="match_parent"
@@ -204,7 +213,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Spiritual Journey"
-                android:textColor="@color/brand_blue"
+                android:textColor="?attr/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="12dp" />
@@ -214,7 +223,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Who invited you?"
                 android:layout_marginBottom="12dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:startIconDrawable="@drawable/ic_person"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etInvitedBy"
                     android:layout_width="match_parent"
@@ -226,7 +236,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Are you born again?"
-                android:textColor="@color/text_primary"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp"
                 android:layout_marginBottom="4dp" />
             <RadioGroup
@@ -235,15 +245,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="12dp">
-                <RadioButton android:id="@+id/rbBornAgainYes" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Yes" />
-                <RadioButton android:id="@+id/rbBornAgainNo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No" android:layout_marginStart="16dp" />
+                <RadioButton android:id="@+id/rbBornAgainYes" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Yes" android:textColor="?attr/colorOnSurface" />
+                <RadioButton android:id="@+id/rbBornAgainNo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No" android:textColor="?attr/colorOnSurface" android:layout_marginStart="16dp" />
             </RadioGroup>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Do you speak in tongues?"
-                android:textColor="@color/text_primary"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp"
                 android:layout_marginBottom="4dp" />
             <RadioGroup
@@ -252,15 +262,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="12dp">
-                <RadioButton android:id="@+id/rbTonguesYes" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Yes" />
-                <RadioButton android:id="@+id/rbTonguesNo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No" android:layout_marginStart="16dp" />
+                <RadioButton android:id="@+id/rbTonguesYes" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Yes" android:textColor="?attr/colorOnSurface" />
+                <RadioButton android:id="@+id/rbTonguesNo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No" android:textColor="?attr/colorOnSurface" android:layout_marginStart="16dp" />
             </RadioGroup>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Would you like to be a member of BLW?"
-                android:textColor="@color/text_primary"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp"
                 android:layout_marginBottom="4dp" />
             <RadioGroup
@@ -269,8 +279,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="16dp">
-                <RadioButton android:id="@+id/rbMemberYes" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Yes" />
-                <RadioButton android:id="@+id/rbMemberNo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No" android:layout_marginStart="16dp" />
+                <RadioButton android:id="@+id/rbMemberYes" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Yes" android:textColor="?attr/colorOnSurface" />
+                <RadioButton android:id="@+id/rbMemberNo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No" android:textColor="?attr/colorOnSurface" android:layout_marginStart="16dp" />
             </RadioGroup>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -278,7 +288,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Prayer request or testimony"
                 android:layout_marginBottom="16dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:startIconDrawable="@drawable/ic_first_timer_welcome"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPrayer"
                     android:layout_width="match_parent"
@@ -292,26 +303,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Department Interest"
-                android:textColor="@color/brand_blue"
+                android:textColor="?attr/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
 
-            <CheckBox android:id="@+id/cbUshering" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ushering" android:textSize="14sp" />
-            <CheckBox android:id="@+id/cbChoir" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Choir" android:textSize="14sp" />
-            <CheckBox android:id="@+id/cbTechnical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Technical" android:textSize="14sp" />
-            <CheckBox android:id="@+id/cbCreativeArt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Creative Art" android:textSize="14sp" />
-            <CheckBox android:id="@+id/cbMedia" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Media &amp; New Media" android:textSize="14sp" />
-            <CheckBox android:id="@+id/cbInnovations" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Innovations" android:textSize="14sp" android:layout_marginBottom="24dp" />
+            <CheckBox android:id="@+id/cbUshering" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ushering" android:textColor="?attr/colorOnSurface" android:textSize="14sp" />
+            <CheckBox android:id="@+id/cbChoir" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Choir" android:textColor="?attr/colorOnSurface" android:textSize="14sp" />
+            <CheckBox android:id="@+id/cbTechnical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Technical" android:textColor="?attr/colorOnSurface" android:textSize="14sp" />
+            <CheckBox android:id="@+id/cbCreativeArt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Creative Art" android:textColor="?attr/colorOnSurface" android:textSize="14sp" />
+            <CheckBox android:id="@+id/cbMedia" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Media &amp; New Media" android:textColor="?attr/colorOnSurface" android:textSize="14sp" />
+            <CheckBox android:id="@+id/cbInnovations" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Innovations" android:textColor="?attr/colorOnSurface" android:textSize="14sp" android:layout_marginBottom="24dp" />
 
             <!-- Submit Button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSubmit"
+                style="@style/Widget.App.Button.FirstTimer"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:text="Complete Registration"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:icon="@drawable/ic_first_timer_welcome"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp" />
 
         </LinearLayout>
     </ScrollView>

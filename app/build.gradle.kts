@@ -38,6 +38,7 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.constraintlayout)
     implementation(libs.material)
+    implementation(libs.core.splashscreen)
 
     // Room (local persistence)
     implementation(libs.room.runtime)

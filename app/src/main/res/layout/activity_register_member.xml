@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/bg_off_white">
+    android:background="?android:attr/colorBackground">
 
     <!-- Header -->
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/brand_blue"
+        app:cardBackgroundColor="?attr/colorPrimary"
         app:cardCornerRadius="0dp"
         app:cardElevation="4dp"
         app:strokeWidth="0dp">
@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Register Member"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
@@ -37,126 +37,260 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text=""
-                android:textColor="@color/brand_blue_container"
+                android:textColor="?attr/colorPrimaryContainer"
                 android:textSize="14sp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Search Section -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Search by name or phone"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etSearch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:imeOptions="actionSearch" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSearch"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="12dp"
-            android:text="Search"
-            android:textSize="15sp" />
-    </LinearLayout>
-
-    <!-- Divider -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/outline_border" />
-
-    <!-- Results Section -->
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/scrollForm"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:fillViewport="true">
 
-        <TextView
-            android:id="@+id/tvResultHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Search Results"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:visibility="gone" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvResults"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginTop="8dp"
-            android:visibility="gone" />
-
-        <!-- Not Found Message -->
         <LinearLayout
-            android:id="@+id/layoutNotFound"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
-            android:padding="32dp"
-            android:visibility="gone">
+            android:padding="16dp">
+
+            <!-- Lookup (convenience only, not a gate) -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Look up your details (name or phone)"
+                app:startIconDrawable="@drawable/ic_search"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:imeOptions="actionDone" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Member not found"
-                android:textColor="@color/error_red"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
+                android:text="Found a match? Tap it to fill the form."
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:textSize="13sp" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSuggestions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:visibility="gone" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="16dp"
+                android:background="?attr/colorOutline" />
+
+            <!-- Attendance Sheet details (docs/data-field-spec.md §2) -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="We couldn't find you in our records."
-                android:textColor="@color/text_secondary"
-                android:textSize="14sp"
-                android:gravity="center" />
+                android:text="Member Details"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Surname *"
+                    android:layout_marginEnd="8dp"
+                    app:startIconDrawable="@drawable/ic_person"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etSurname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="First Name *"
+                    app:startIconDrawable="@drawable/ic_person"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFirstName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone Number *"
+                android:layout_marginBottom="8dp"
+                app:startIconDrawable="@drawable/ic_phone"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:layout_marginBottom="8dp"
+                app:startIconDrawable="@drawable/ic_email"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Hall/Hostel"
+                    android:layout_marginEnd="8dp"
+                    app:startIconDrawable="@drawable/ic_location"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etHall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Room No"
+                    app:startIconDrawable="@drawable/ic_location"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etRoom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Course of Study"
+                android:layout_marginBottom="8dp"
+                app:startIconDrawable="@drawable/ic_school"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCourse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Level"
+                android:layout_marginBottom="8dp"
+                app:startIconDrawable="@drawable/ic_school"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etLevel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Date of Birth (DD/MM/YYYY)"
+                android:layout_marginBottom="16dp"
+                app:startIconDrawable="@drawable/ic_calendar"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etDob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="date" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Submit -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSubmit"
+                style="@style/Widget.App.Button.Member"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Save &amp; Mark Present"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:icon="@drawable/ic_member_checkin"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp" />
+
+            <!-- Optional suggestion, never a forced redirect -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnGoFirstTimer"
+                style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_marginTop="16dp"
-                android:text="Register as First Timer instead"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:text="First time here? Register as a first timer instead"
+                android:textColor="?attr/colorPrimary"
                 android:textSize="14sp" />
+
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
     <!-- Success Message (hidden by default) -->
     <LinearLayout
         android:id="@+id/layoutSuccess"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:gravity="center"
         android:padding="32dp"
-        android:background="@color/surface_white"
+        android:background="?attr/colorSurface"
         android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Attendance Marked!"
-            android:textColor="@color/brand_blue"
+            android:textColor="?attr/colorPrimary"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -166,7 +300,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text=""
-            android:textColor="@color/text_primary"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="16sp" />
     </LinearLayout>
 
