@@ -47,6 +47,11 @@ public class FirstTimerListFragment extends Fragment {
         adapter.setOnFollowUpStatusChangedListener((firstTimerId, newStatus) ->
                 viewModel.updateFollowUpStatus(firstTimerId, newStatus));
 
+        adapter.setOnItemClickListener(item -> {
+            FirstTimerDetailDialogFragment dialog = FirstTimerDetailDialogFragment.newInstance(item);
+            dialog.show(getChildFragmentManager(), "first_timer_detail");
+        });
+
         viewModel.getFirstTimerList().observe(getViewLifecycleOwner(), items -> {
             if (items == null || items.isEmpty()) {
                 tvEmpty.setVisibility(View.VISIBLE);

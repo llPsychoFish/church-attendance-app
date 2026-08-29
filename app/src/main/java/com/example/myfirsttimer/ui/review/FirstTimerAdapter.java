@@ -23,8 +23,13 @@ public class FirstTimerAdapter extends RecyclerView.Adapter<FirstTimerAdapter.Vi
         void onFollowUpStatusChanged(long firstTimerId, String newStatus);
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(ReviewViewModel.FirstTimerWithMember item);
+    }
+
     private List<ReviewViewModel.FirstTimerWithMember> items = new ArrayList<>();
     private OnFollowUpStatusChangedListener listener;
+    private OnItemClickListener itemClickListener;
 
     public void setItems(List<ReviewViewModel.FirstTimerWithMember> items) {
         this.items = items;
@@ -33,6 +38,10 @@ public class FirstTimerAdapter extends RecyclerView.Adapter<FirstTimerAdapter.Vi
 
     public void setOnFollowUpStatusChangedListener(OnFollowUpStatusChangedListener listener) {
         this.listener = listener;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
@@ -46,6 +55,11 @@ public class FirstTimerAdapter extends RecyclerView.Adapter<FirstTimerAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ReviewViewModel.FirstTimerWithMember item = items.get(position);
+        holder.itemView.setOnClickListener(v -> {
+            if (itemClickListener != null) {
+                itemClickListener.onItemClick(item);
+            }
+        });
         holder.tvMemberName.setText(item.member.surname + " " + item.member.firstName);
         holder.tvPhone.setText(item.member.phone != null ? item.member.phone : "No phone");
 

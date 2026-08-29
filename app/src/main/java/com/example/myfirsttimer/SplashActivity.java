@@ -5,9 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
@@ -28,10 +25,6 @@ public class SplashActivity extends AppCompatActivity {
         splashScreen.setKeepOnScreenCondition(() -> SystemClock.uptimeMillis() < exitTime);
 
         setContentView(R.layout.activity_splash);
-
-        ImageView logo = findViewById(R.id.ivSplashLogo);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.splash_logo_in);
-        logo.startAnimation(animation);
 
         boolean loggedIn = new SessionManager(this).isLoggedIn();
 
